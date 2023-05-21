@@ -1,6 +1,6 @@
 🎯 **Algo-Media**
 
-Welcome to Algo-Media! 🎉 This exciting project is dedicated to exploring algorithms and data structures in the context of media processing and manipulation. Here, we dive into the world of media-related applications, providing implementations of various algorithms and data structures commonly used in this field. Whether you're interested in image processing, audio manipulation, or video analysis, Algo-Media has got you covered!
+Welcome to Algo-Media! 🎉 This project explores algorithms and data structures for media processing and manipulation. We provide implementations of various algorithms and data structures commonly used in image processing, audio manipulation, and video analysis.
 
 <div align="center">
   <br>
@@ -15,16 +15,11 @@ Welcome to Algo-Media! 🎉 This exciting project is dedicated to exploring algo
   <img src="https://img.shields.io/github/stars/Fenrir-04/Algo-Media?style=for-the-badge" />
   <img src="https://img.shields.io/github/last-commit/Fenrir-04/Algo-Media?style=for-the-badge" />
   <img src="https://img.shields.io/github/commit-activity/y/Fenrir-04/Algo-Media?style=for-the-badge" />
- 
 </div>
 
 # Algo-Media
 
-
-Algo-Media is a project aimed at exploring algorithms and data structures in the context of media processing and manipulation. This repository contains implementations of various algorithms and data structures commonly used in media-related applications.
-
-
-Algo-Media is a project aimed at exploring algorithms and data structures in the context of media processing and manipulation. This repository contains implementations of various algorithms and data s
+Algo-Media explores algorithms and data structures for media processing and manipulation. This repository contains implementations of algorithms and data structures commonly used in media-related applications.
 
 ## 📚 Table of Contents
 
@@ -33,14 +28,15 @@ Algo-Media is a project aimed at exploring algorithms and data structures in the
 - [🚀 Usage](#-usage)
 - [🤝 Contributing](#-contributing)
 - [📝 License](#-license)
+- [Contributors](#contributors)
 
 ## 👋 Introduction
 
-At Algo-Media, we are passionate about algorithms and data structures, and we believe that they play a vital role in media-related applications. By exploring the implementation and studying the behavior of these algorithms and data structures, we aim to enhance our understanding of media processing and manipulation techniques.
+At Algo-Media, we believe that algorithms and data structures are crucial for media-related applications. Our project explores their implementation and behavior in the context of media processing and manipulation.
 
 ## ⚙️ Installation
 
-To get started with Algo-Media, follow these simple steps:
+To get started with Algo-Media, follow these steps:
 
 1. Clone the repository:
    ```
@@ -57,11 +53,9 @@ To get started with Algo-Media, follow these simple steps:
    npm install
    ```
 
-Great! You're all set up and ready to dive into the world of Algo-Media!
-
 ## 🚀 Usage
 
-To explore the algorithms and data structures implemented in Algo-Media, follow the usage instructions below:
+To explore the implemented algorithms and data structures in Algo-Media, follow these instructions:
 
 1. Browse through the repository and locate the specific algorithm or data structure you are interested in.
 
@@ -76,28 +70,8 @@ To explore the algorithms and data structures implemented in Algo-Media, follow 
 Contributions to Algo-Media are always welcome! If you'd like to contribute, please follow these guidelines:
 
 1. Fork the repository.
-
 2. Create a new branch for your feature or bug fix:
-   ```
-   git checkout -b feature/your-feature-name
-   ```
 
-3. Commit your changes:
-   ```
-   git commit -m 'Add some feature'
-   ```
-
-4. Push the branch:
-   ```
-   git push origin feature/your-feature-name
-   ```
-
-5. Open a pull request.
-
-
-We appreciate your contributions and thank you for helping us improve Algo-Media!
-
-## Contributors
 
 We would like to thank the following contributors for their valuable contributions to Algo-Media:
 
@@ -108,10 +82,4 @@ We would like to thank the following contributors for their valuable contributio
   <!-- Add more contributors here -->
 </div>
 
-
-## 📝 License
-
-This project is licensed under the [MIT License](LICENSE). Feel free to use and modify the codebase according to the terms specified in the license.
-
-Enjoy exploring algorithms and data structures in the realm of media processing with Algo-Media! If you have any questions or suggestions, please don't hesitate to reach out. Happy coding! 🚀✨
-
+  
