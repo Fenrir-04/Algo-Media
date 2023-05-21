@@ -20,14 +20,9 @@ Welcome to Algo-Media! 🎉 This exciting project is dedicated to exploring algo
 
 # Algo-Media
 
-<div align="center">
-  <img src="path/to/logo.png" alt="Algo-Media Logo" width="200px" />
-</div>
-
 
 Algo-Media is a project aimed at exploring algorithms and data structures in the context of media processing and manipulation. This repository contains implementations of various algorithms and data structures commonly used in media-related applications.
 
-<!-- Rest of the README content -->
 
 Algo-Media is a project aimed at exploring algorithms and data structures in the context of media processing and manipulation. This repository contains implementations of various algorithms and data s
 
