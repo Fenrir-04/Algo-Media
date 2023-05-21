@@ -114,4 +114,4 @@ We would like to thank the following contributors for their valuable contributio
 This project is licensed under the [MIT License](LICENSE). Feel free to use and modify the codebase according to the terms specified in the license.
 
 Enjoy exploring algorithms and data structures in the realm of media processing with Algo-Media! If you have any questions or suggestions, please don't hesitate to reach out. Happy coding! 🚀✨
-```
+
