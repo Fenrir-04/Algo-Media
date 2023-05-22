@@ -4,9 +4,11 @@ import ReactPlayer from "react-player";
 import { Typography, Box, Stack } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import moment from "moment";
-import { Videos, Loader } from "./";
+import { Videos } from "./";
 import { fetchFromAPI } from "../utils/fetchFromAPI";
 import { dateFormat } from "../utils/constants";
+import Loader from "./Loader";
+
 
 const VideoDetail = () => {
   const [videoDetail, setVideoDetail] = useState(null);
