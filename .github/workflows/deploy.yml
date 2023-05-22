@@ -1,0 +1,16 @@
+name: Deploy netify Site
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+jobs:
+  linting:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.x]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Deploy Site
+      run: curl -X POST -d {} https://api.netlify.com/build_hooks/646bc08d0469bd270e1d3eb6
