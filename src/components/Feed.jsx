@@ -4,6 +4,7 @@ import { Await, defer, useLoaderData, useSearchParams } from "react-router-dom";
 
 import { fetchFromAPI } from "../utils/fetchFromAPI";
 import { Videos, Sidebar, Loader } from "./";
+import ScrollToTopButton from "./TopButton";
 
 export async function loader({ request }) {
 	const category = new URL(request.url).searchParams.get("q") || "New";
@@ -37,6 +38,7 @@ const Feed = () => {
 					</Await>
 				</Suspense>
 			</Box>
+			<ScrollToTopButton />
 		</Stack>
 	);
 };
