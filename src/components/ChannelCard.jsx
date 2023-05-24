@@ -34,11 +34,12 @@ const ChannelCard = ({ channelDetail, marginTop }) => (
             {parseInt(channelDetail?.statistics?.subscriberCount).toLocaleString('en-US')} 
              <span
                style={{
-                backgroundColor: 'red',
-                border: '2px solid black',
-                borderRadius: '5px',
-                padding: '8px 10px',
-                color:'white',
+                 backgroundColor: 'red',
+                 border: '2px solid black',
+                 borderRadius: '5px',
+                 padding: '8px 10px',
+                 color:'white',
+                 marginLeft:'20px',
               }}
             >
               Subscribers
