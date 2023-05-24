@@ -7,6 +7,12 @@ Example: 🛠️ Fixes Issue #31 -->
 
 <!-- Remove this section if not applicable -->
 
+## 👨‍💻 Changes proposed:
+
+<!-- List all the proposed changes in your PR -->
+
+<!-- DESCRIBE HERE -->
+
 ### 📝 Additional Notes
 
 #### Discord username
@@ -16,12 +22,6 @@ Example: 🛠️ Fixes Issue #31 -->
 #### Link to any external resources
 
  <!--Mention any document or external resource that would help in reviewing -->
-
-## 👨‍💻 Changes proposed:
-
-<!-- List all the proposed changes in your PR -->
-
-<!-- DESCRIBE HERE -->
 
 ## 📷 Screenshots
 
