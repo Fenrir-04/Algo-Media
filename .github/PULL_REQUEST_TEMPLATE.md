@@ -23,10 +23,6 @@ Example: 🛠️ Fixes Issue #31 -->
 
 <!-- DESCRIBE HERE -->
 
-## 📄 Note to reviewers
-
-<!-- Add notes to reviewers if applicable -->
-
 ## 📷 Screenshots
 
 <!-- Write N/A if not available-->
