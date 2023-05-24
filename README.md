@@ -53,7 +53,7 @@ To get started with Algo-Media, follow these steps:
    ```
    npm install
    ```
-4. Configure API keys: Obtain API keys for the YouTube v3 API from RapidAPI by signing up on RapidAPI and subscribing to the YouTube v3 API. Once you have the API keys, create a .env file in the root directory of the project and add the following:
+4. Configure API keys: Obtain API keys for the YouTube v3 API from RapidAPI by signing up on RapidAPI and subscribing to the [YouTube v3 API](https://rapidapi.com/ytdlfree/api/youtube-v31/). Once you have the API keys, create a .env file in the root directory of the project and add the following:
    ```
    REACT_APP_RAPID_API_KEY= your_youtube_api_key
    ```
