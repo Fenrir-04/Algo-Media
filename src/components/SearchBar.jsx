@@ -24,11 +24,10 @@ const SearchBar = () => {
     try {
       //cancel previous api request
       if (abortController.current) {
-        console.log("cancel ");
         abortController.current.abort();
         abortController.current = null;
       }
-      console.log("inside fetchSuggestions", term);
+
       abortController.current = new AbortController();
       const signal = abortController.current.signal;
 
@@ -64,6 +63,7 @@ const SearchBar = () => {
       id="free-solo-demo"
       freeSolo
       options={recommendations.map((option) => option.title)}
+      hiddenLabel="true"
       sx={{
         width: "300px",
         background: "white",
@@ -73,11 +73,13 @@ const SearchBar = () => {
       renderInput={(params) => (
         <>
           <TextField
-            label="search"
+            placeholder="search"
             {...params}
+            sx={{ background: "white", borderRadius: "30px" }}
             value={searchTerm}
             onChange={handleTextType}
             variant="outlined"
+            fullWidth
           />
           <IconButton
             type="submit"
