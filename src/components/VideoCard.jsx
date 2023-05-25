@@ -49,7 +49,8 @@ const VideoCard = ({
             sx={{ fontSize: "12px", color: "gray", ml: "5px" }}
           />
         </Typography>
-        {console.log(snippet)}
+      </Link>
+      <Link to={videoId ? `/video/${videoId}` : demoVideoUrl}>
         <Typography variant="subtitle2" color="gray">
           Published on : {" " + moment(snippet?.publishedAt).format(dateFormat)}
         </Typography>
