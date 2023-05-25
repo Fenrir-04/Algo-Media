@@ -19,10 +19,8 @@ export const fetchFromAPI = async (url) => {
 };
 
 export const fetchSuggestionFromSearchText = async (q, signal) => {
-  const url = "https://youtube-v31.p.rapidapi.com/captions";
   const options = {
     method: "GET",
-    url: "https://youtube-v31.p.rapidapi.com/captions",
     params: { part: "snippet", q },
     headers: {
       "X-RapidAPI-Key": "01fb8d7063msh3ad668189e06297p108423jsn1f30a28cfb1a",
