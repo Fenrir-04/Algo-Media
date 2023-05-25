@@ -26,6 +26,7 @@ Algo-Media is a React-based video streaming application inspired by platforms li
 - [👋 Introduction](#-introduction)
 - [⚙️ Installation](#️-installation)
 - [🚀 Usage](#-usage)
+- [🧰 Tech Stack Used](#-tech-stack-used)
 - [👨‍💻 Mentors and Project Admin](#-mentors-and-project-admin)
 - [🤝 Contributing](#-contributing)
 - [📝 License](#-license)
@@ -70,6 +71,13 @@ To get started with Algo-Media, follow these steps:
 3. Scroll down to view additional video suggestions based on your search query.
 
 Feel free to add more features to this project.
+
+## 🧰 Tech Stack Used
+ <img alt="React" src="https://img.shields.io/badge/react%20-%23323330.svg?&style=for-the-badge&logo=react&logoColor=%#61DBFB"/>
+<img src="https://img.shields.io/badge/javascript%20-%23323330.svg?&style=for-the-badge&logo=javascript&logoColor=%23F7DF1E"/>
+<img src="https://img.shields.io/badge/Redux-593D88?style=for-the-badge&logo=redux&logoColor=white"/>
+
+
 
 ## 👨‍💻 Mentors and Project Admin 
 
