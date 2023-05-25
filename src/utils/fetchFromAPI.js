@@ -18,7 +18,7 @@ export const fetchFromAPI = async (url) => {
   return data;
 };
 
-export const fetchSuggestionFromSearchText = async (q) => {
+export const fetchSuggestionFromSearchText = async (q, signal) => {
   const url = "https://youtube-v31.p.rapidapi.com/captions";
   const options = {
     method: "GET",
@@ -28,7 +28,8 @@ export const fetchSuggestionFromSearchText = async (q) => {
       "X-RapidAPI-Key": "01fb8d7063msh3ad668189e06297p108423jsn1f30a28cfb1a",
       "X-RapidAPI-Host": "youtube-v31.p.rapidapi.com",
     },
+    signal,
   };
 
-  return axios.get(`${BASE_URL}/search`, options);
+  return axios(`${BASE_URL}/search`, options);
 };
