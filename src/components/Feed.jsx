@@ -3,8 +3,9 @@ import { Box, Stack, Typography } from "@mui/material";
 import { Await, defer, useLoaderData, useSearchParams } from "react-router-dom";
 
 import { fetchFromAPI } from "../utils/fetchFromAPI";
-import { Videos, Sidebar, Loader } from "./";
+import { Videos, Sidebar } from "./";
 import ScrollToTopButton from "./TopButton";
+import Loader from "./Loader";
 
 export async function loader({ request }) {
 	const category = new URL(request.url).searchParams.get("q") || "New";
