@@ -29,5 +29,10 @@ export const fetchSuggestionFromSearchText = async (q, signal) => {
     signal,
   };
 
-  return axios(`${BASE_URL}/search`, options);
+  try {
+    const result = await axios(`${BASE_URL}/search`, options);
+    return result;
+  } catch (error) {
+    if (error.name !== "CanceledError") console.log("Error:", error);
+  }
 };

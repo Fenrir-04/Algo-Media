@@ -21,35 +21,26 @@ const SearchBar = () => {
   };
 
   const fetchSuggestions = _.debounce(async (term) => {
-    try {
-      //cancel previous api request
-      if (abortController.current) {
-        abortController.current.abort();
-        abortController.current = null;
-      }
-
-      abortController.current = new AbortController();
-      const signal = abortController.current.signal;
-
-      //if term is empty exirt
-      if (_.isEmpty(term)) return;
-      //fetch and transform data to extract suggestions
-      fetchSuggestionFromSearchText(term, signal)
-        .then((res) => _.get(res, "data"))
-        .then((data) => _.get(data, "items"))
-        .then((data) => _.map(data, (item) => _.get(item, "snippet")))
-        .then((data) => setRecommendations(data));
-    } catch (error) {
-      if (error.name === "CanceledError") {
-        console.log("Previous request aborted");
-      } else {
-        console.error("Error fetching recommendations:", error);
-      }
+    //cancel previous api request
+    if (abortController.current) {
+      abortController.current.abort();
+      abortController.current = null;
     }
+
+    abortController.current = new AbortController();
+    const signal = abortController.current.signal;
+
+    //if term is empty exirt
+    if (_.isEmpty(term)) return;
+    //fetch and transform data to extract suggestions
+    fetchSuggestionFromSearchText(term, signal)
+      .then((res) => _.get(res, "data"))
+      .then((data) => _.get(data, "items"))
+      .then((data) => _.map(data, (item) => _.get(item, "snippet")))
+      .then((data) => setRecommendations(data));
   }, 300); // 300ms delay
 
   const onhandleSubmit = (e) => {
-    console.log("onhandleSubmit");
     e.preventDefault();
 
     if (searchTerm) {
