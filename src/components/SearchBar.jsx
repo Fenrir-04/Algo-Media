@@ -49,6 +49,7 @@ const SearchBar = () => {
   }, 300); // 300ms delay
 
   const onhandleSubmit = (e) => {
+    console.log("onhandleSubmit");
     e.preventDefault();
 
     if (searchTerm) {
@@ -58,12 +59,20 @@ const SearchBar = () => {
     }
   };
 
+  const handleSelect = (e, value) => {
+    new Promise((resolve) => {
+      setSearchTerm(value);
+      setTimeout(resolve, 300);
+    }).then(() => onhandleSubmit(e));
+  };
+
   return (
     <Autocomplete
       id="free-solo-demo"
       freeSolo
       options={recommendations.map((option) => option.title)}
       hiddenLabel="true"
+      onChange={(e, value) => handleSelect(e, value)}
       sx={{
         width: "300px",
         background: "white",
