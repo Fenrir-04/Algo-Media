@@ -1,15 +1,13 @@
 import axios from 'axios';
 
-export const BASE_URL = 'https://youtube-v31.p.rapidapi.com';
-
+export const BASE_URL = 'https://www.googleapis.com/youtube/v3';
+const apiKey = process.env.API_KEY;
 const options = {
   method: 'GET',
-  url: 'https://youtube-v31.p.rapidapi.com/captions',
-  params: {part: 'snippet', videoId: 'M7FIvfx5J10'},
+  params: { part: 'snippet', videoId: 'M7FIvfx5J10',key: apiKey},
   headers: {
-    'X-RapidAPI-Key': '01fb8d7063msh3ad668189e06297p108423jsn1f30a28cfb1a',
-    'X-RapidAPI-Host': 'youtube-v31.p.rapidapi.com'
-  }
+    Authorization: apiKey,
+  },
 };
 
 export const fetchFromAPI = async (url) => {
