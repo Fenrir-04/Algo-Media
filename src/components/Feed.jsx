@@ -8,15 +8,15 @@ import ScrollToTopButton from "./TopButton";
 import Loader from "./Loader";
 
 export async function loader({ request }) {
-	const category = new URL(request.url).searchParams.get("q") || "New";
-	return defer({ data: fetchFromAPI(`search?part=snippet&q=${category}`)});
+	const category = new URL(request.url).searchParams.get("q") || false;
+  const endPoint=`videos?regionCode=US&chart=mostPopular&${category&&`videoCategoryId=${category}`}`;
+	return defer({ data: fetchFromAPI(endPoint)});
 }
 
 const Feed = () => {
 	const [searchParams] = useSearchParams()
 	const selectedCategory = searchParams.get("q") || "New";
 	const dataPromises = useLoaderData();
-
 	let year = new Date().getFullYear();
 
 	return (

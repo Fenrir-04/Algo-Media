@@ -6,7 +6,8 @@ import { Suspense } from "react";
 
 export async function loader({ params }) {
 	const searchTerm = params.searchTerm;
-	const data = fetchFromAPI(`search?part=snippet&q=${searchTerm}`)
+	const data = fetchFromAPI(`search?part=snippet&q=${searchTerm}%categoryId`)
+	console.log(data)
 	return defer({ data: data });
 }
 
