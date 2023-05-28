@@ -106,8 +106,10 @@ Thank you for considering contributing to Algo-Media! Your contributions will pl
 We would like to thank the following contributors for their valuable contributions to Algo-Media:
 
 <div align="center">
-  <a href="https://github.com/Fenrir-04/Algo-Media/graphs/contributors">
+<a href="https://github.com/Fenrir-04/Algo-Media/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=Fenrir-04/Algo-Media" />
+</a>
+
 </a>
 </div>
 
