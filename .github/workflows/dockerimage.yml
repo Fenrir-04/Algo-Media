@@ -8,7 +8,7 @@ on:
 env:
   DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USER }}
   DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
-  REPO_NAME: ${{ github.event.repository.name }}
+  REPO_NAME: "algo-media"
 
 jobs:
   build-and-push:
