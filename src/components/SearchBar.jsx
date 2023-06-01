@@ -1,24 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Paper, IconButton } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-import { Mic } from "@mui/icons-material";
-import SpeechRecognition, {
-  useSpeechRecognition,
-} from "react-speech-recognition";
+import VoiceSearch from "./VoiceSearch";
 
 const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
-
-  const {
-    listening,
-    browserSupportsSpeechRecognition,
-    isMicrophoneAvailable,
-    resetTranscript,
-    stopListening,
-    finalTranscript,
-  } = useSpeechRecognition();
 
   const onhandleSubmit = (e) => {
     e.preventDefault();
@@ -27,34 +15,8 @@ const SearchBar = () => {
     }
   };
 
-  useEffect(() => {
-    if (!browserSupportsSpeechRecognition) {
-      window.alert(`Your Browser doesn't support this feature.`);
-    }
-  }, [browserSupportsSpeechRecognition]);
-
-  useEffect(() => {
-    if (finalTranscript !== "") {
-      setSearchTerm(finalTranscript);
-      navigate(`/search/${finalTranscript}`);
-      resetTranscript();      
-    }
-  }, [finalTranscript, resetTranscript,navigate]);
-
-  const handleMicButton = () => {
-    if (!isMicrophoneAvailable) {
-      return window.alert(`Microphone Permission Not Available`);
-    }
-    if (listening) {
-      stopListening();
-    } else {
-      resetTranscript();
-      SpeechRecognition.startListening();
-    }
-  };
-  
   return (
-    <div style={{ display: 'flex' , alignItems:'center'}}>
+    <div style={{ display: "flex", alignItems: "center" }}>
       <Paper
         component="form"
         onSubmit={onhandleSubmit}
@@ -81,24 +43,7 @@ const SearchBar = () => {
         </IconButton>
       </Paper>
 
-      <Paper
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          width: 50,
-          height: 50,
-          borderRadius: "50%",
-        }}
-      >
-        <IconButton
-          color="primary"
-          aria-label="voice search"
-          onClick={handleMicButton}
-        >
-          <Mic />
-        </IconButton>
-      </Paper>
+      <VoiceSearch setSearchTerm={setSearchTerm} />
     </div>
   );
 };
