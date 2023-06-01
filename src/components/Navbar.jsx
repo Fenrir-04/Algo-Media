@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 import { logo } from "../utils/constants";
 import { SearchBar } from "./";
+import VoiceSearch from "./VoiceSearch";
 
 const Navbar = () => (
   <Stack direction="row" alignItems="center" p={2} sx={{ position:  "sticky", background: '#000', top: 0, justifyContent: "space-between" }}>
@@ -10,7 +11,10 @@ const Navbar = () => (
       <img src={logo} alt="logo" height={45} />
     </Link>
 
-    <SearchBar />
+    <Stack direction='row' alignItems='center'>
+      <SearchBar />
+      <VoiceSearch />
+    </Stack>
   </Stack>
 );
 

@@ -8,13 +8,15 @@ import {
 import { ChannelDetail, VideoDetail, SearchFeed, Feed, Layout } from "./components";
 import {loader as feedLoader} from "./components/Feed";
 import {loader as searchFeedLoader} from "./components/SearchFeed";
+import {loader as videoDetailLoader} from "./components/VideoDetail";
+import {loader as channelDetailLoader} from "./components/ChannelDetail";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
         <Route path="/" element={<Layout />}>
             <Route index loader={feedLoader} element={<Feed />} />
-            <Route path="video/:id" element={<VideoDetail />} />
-            <Route path="channel/:id" element={<ChannelDetail />} />
+            <Route path="video/:id" loader={videoDetailLoader} element={<VideoDetail />} />
+            <Route path="channel/:id" loader={channelDetailLoader} element={<ChannelDetail />} />
             <Route path="search/:searchTerm" loader={searchFeedLoader} element={<SearchFeed />} />
         </Route>
     )

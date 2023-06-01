@@ -6,7 +6,7 @@ import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
 
-const VoiceSearch = ({setSearchTerm}) => {
+const VoiceSearch = () => {
   const navigate = useNavigate();
   const {
     listening,
@@ -25,11 +25,10 @@ const VoiceSearch = ({setSearchTerm}) => {
 
   useEffect(() => {
     if (finalTranscript !== "") {
-      setSearchTerm(finalTranscript);
       navigate(`/search/${finalTranscript}`);
       resetTranscript();
     }
-  }, [finalTranscript, resetTranscript, navigate,setSearchTerm]);
+  }, [finalTranscript, resetTranscript, navigate]);
 
   const handleMicButton = () => {
     if (!isMicrophoneAvailable) {
@@ -49,9 +48,10 @@ const VoiceSearch = ({setSearchTerm}) => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        width: 50,
-        height: 50,
+        width: 55,
+        height: 55,
         borderRadius: "50%",
+        margin: 5
       }}
     >
       <IconButton
