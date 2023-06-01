@@ -1,17 +1,9 @@
 import React, { Suspense } from "react";
 import { Box, Stack, Typography } from "@mui/material";
-import { Await, defer, useLoaderData, useSearchParams } from "react-router-dom";
-
-import { fetchFromAPI } from "../utils/fetchFromAPI";
+import { Await, useLoaderData, useSearchParams } from "react-router-dom";
 import { Videos, Sidebar } from "./";
 import ScrollToTopButton from "./TopButton";
 import Loader from "./Loader";
-
-export async function loader({ request }) {
-	const category = new URL(request.url).searchParams.get("q") || false;
-  const endPoint=`videos?regionCode=US&chart=mostPopular&${category&&`videoCategoryId=${category}`}`;
-	return defer({ data: fetchFromAPI(endPoint)});
-}
 
 const Feed = () => {
 	const [searchParams] = useSearchParams()
