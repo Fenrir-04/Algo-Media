@@ -74,7 +74,7 @@ const VideoDetail = () => {
   return (
     <Box minHeight="95vh">
       <Stack direction={{ xs: "column", md: "row" }}>
-        <Box flex={1}>
+        <Box flex={1} sx={{ flexBasis: "100%" }}>
           <Suspense fallback={<Loader />}>
             <Await resolve={dataPromises.videoData}>
               {renderVideo}
