@@ -21,7 +21,7 @@ const Categories = () => {
 			{categories.map((category) => (
 				<button
 					className="category-btn"
-					onClick={() => setSearchParams({ "q": category.name })}
+					onClick={() => setSearchParams({ "q": category.categoryId })}
 					style={{
 						background: (category.name === selectedCategory || (!selectedCategory && category.name === "New")) && "#FC1503",
 						color: "white",

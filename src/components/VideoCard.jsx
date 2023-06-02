@@ -12,19 +12,17 @@ import {
   dateFormat,
 } from "../utils/constants";
 
-const VideoCard = ({
-  video: {
-    id: { videoId },
-    snippet,
-  },
-}) => (
+const VideoCard = ({video}) =>{
+  const id = video.id.videoId?video.id.videoId: video.id;
+  const {snippet} = video;
+  return(
   <Card
     sx={{
       boxShadow: "none",
       borderRadius: 0,
     }}
   >
-    <Link to={videoId ? `/video/${videoId}` : `/video/cV2gBU6hKfY`}>
+    <Link to={id ? `/video/${id}` : `/video/cV2gBU6hKfY`}>
       <CardMedia
         image={snippet?.thumbnails?.high?.url || demoThumbnailUrl}
         alt={snippet?.title}
@@ -32,7 +30,7 @@ const VideoCard = ({
       />
     </Link>
     <CardContent sx={{ backgroundColor: "#1E1E1E", height: "106px" }}>
-      <Link to={videoId ? `/video/${videoId}` : demoVideoUrl}>
+      <Link to={id ? `/video/${id}` : demoVideoUrl}>
         <Typography variant="subtitle1" fontWeight="bold" color="#FFF">
           {snippet?.title.slice(0, 60) || demoVideoTitle.slice(0, 60)}
         </Typography>
@@ -49,13 +47,13 @@ const VideoCard = ({
           />
         </Typography>
       </Link>
-      <Link to={videoId ? `/video/${videoId}` : demoVideoUrl}>
+      <Link to={id ? `/video/${id}` : demoVideoUrl}>
         <Typography variant="subtitle2" color="gray">
           Published on : {" " + moment(snippet?.publishedAt).format(dateFormat)}
         </Typography>
       </Link>
     </CardContent>
   </Card>
-);
+)};
 
 export default VideoCard;

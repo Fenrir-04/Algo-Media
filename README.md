@@ -1,6 +1,6 @@
 🎯 **Algo-Media**
 
-Welcome to Algo-Media! 🎉 Algo-Media is a React-based video streaming application that allows users to watch YouTube videos. It utilizes the YouTube v3 API provided by RapidAPI to fetch and display videos.
+Welcome to Algo-Media! 🎉 Algo-Media is a React-based video streaming application that allows users to watch YouTube videos. It utilizes the official YouTube v3 API from Google to fetch and display videos.
 
 <div align="center">
   <br>
@@ -54,9 +54,9 @@ To get started with Algo-Media, follow these steps:
    ```
    npm install
    ```
-4. Configure API keys: Obtain API keys for the YouTube v3 API from RapidAPI by signing up on RapidAPI and subscribing to the [YouTube v3 API](https://rapidapi.com/ytdlfree/api/youtube-v31/). Once you have the API keys, create a .env file in the root directory of the project and add the following:
+4. Configure API keys: Obtain API keys for the YouTube v3 API by signing up on Google Developer Console and enabling to the [YouTube v3 API](https://console.cloud.google.com/apis/library/youtube.googleapis.com). Once you have the API keys, create a .env file in the root directory of the project and add the following:
    ```
-   REACT_APP_RAPID_API_KEY= your_youtube_api_key
+   REACT_APP_APIKEY= your_youtube_api_key
    ```
 5. Run the application: Start the development server by running the following command:
    ```

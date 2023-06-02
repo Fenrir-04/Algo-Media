@@ -3,15 +3,7 @@ import { Await, useLoaderData } from "react-router-dom";
 import { Box } from "@mui/material";
 
 import { Videos, ChannelCard } from "./";
-import { fetchFromAPI } from "../utils/fetchFromAPI";
 import Loader from "./Loader";
-
-export async function loader({ params }) {
-  const { id } = params;
-  const channelData = fetchFromAPI(`channels?part=snippet&id=${id}`);
-  const videosData = fetchFromAPI(`search?channelId=${id}&part=snippet%2Cid&order=date`);
-  return { channelData, videosData };
-}
 
 const ChannelDetail = () => {
   const dataPromises = useLoaderData();
