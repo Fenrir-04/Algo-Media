@@ -19,7 +19,7 @@ Welcome to Algo-Media! 🎉 Algo-Media is a React-based video streaming applicat
 
 # Algo-Media
 
-Algo-Media is a React-based video streaming application inspired by platforms like YouTube. It allows users to watch YouTube videos directly within the application. This repository serves as the codebase for the Algo-Media project, and it utilizes the YouTube v3 API, which is accessed through the RapidAPI service.
+Algo-Media is a React-based video streaming application inspired by platforms like YouTube. It allows users to watch YouTube videos directly within the application. This repository serves as the codebase for the Algo-Media project, and it utilizes the YouTube v3 API.
 
 ## 📚 Table of Contents
 
@@ -34,7 +34,7 @@ Algo-Media is a React-based video streaming application inspired by platforms li
 
 ## 👋 Introduction
 
-The Algo-Media application leverages the powerful YouTube v3 API, which enables the retrieval of video data such as titles, descriptions, channel information, and more. By utilizing the RapidAPI service, the application seamlessly integrates with the YouTube API to provide users with an immersive video streaming experience.
+The Algo-Media application leverages the powerful YouTube v3 API, which enables the retrieval of video data such as titles, descriptions, channel information, and more. By utilizing the API, the application seamlessly integrates with the YouTube API to provide users with an immersive video streaming experience.
 
 ## ⚙️ Installation
 
