@@ -3,13 +3,13 @@ import { useNavigate } from "react-router-dom";
 import { IconButton } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { fetchSuggestionFromSearchText } from "../utils/fetchFromAPI";
-import Autocomplete from "@mui/material/Autocomplete";
-import TextField from "@mui/material/TextField";
+import { Autocomplete, TextField, useMediaQuery}from "@mui/material";
 import _ from "lodash";
 
 const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [recommendations, setRecommendations] = useState([]);
+  const isMobile = useMediaQuery('(min-width: 500px)');
   const abortController = useRef();
   const navigate = useNavigate();
   useEffect(() => {});
@@ -63,7 +63,7 @@ const SearchBar = () => {
       hiddenLabel="true"
       onChange={(e, value) => handleSelect(e, value)}
       sx={{
-        width: "300px",
+        width: isMobile?"300px":"170px",
         background: "white",
         borderRadius: "30px",
         display: "flex",
@@ -73,16 +73,17 @@ const SearchBar = () => {
           <TextField
             placeholder="search"
             {...params}
-            sx={{ background: "white", borderRadius: "30px" }}
+            sx={{ background: "white", borderRadius: "30px", width: "300px" }}
             value={searchTerm}
             onChange={handleTextType}
             variant="outlined"
             fullWidth
           />
+          
           <IconButton
             type="submit"
             onClick={onhandleSubmit}
-            sx={{ p: "10px", color: "red" }}
+            sx={{ p: "12px", color: "red", width: "50", height: "50"}}
             aria-label="search"
           >
             <SearchIcon />

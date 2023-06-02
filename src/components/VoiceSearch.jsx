@@ -48,8 +48,8 @@ const VoiceSearch = () => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        width: 55,
-        height: 55,
+        width: 50,
+        height: 50,
         borderRadius: "50%",
         margin: 5
       }}
