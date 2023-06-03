@@ -20,16 +20,17 @@ const VideoCard = ({video}) =>{
     sx={{
       boxShadow: "none",
       borderRadius: 0,
+      backgroundColor: 'black'
     }}
   >
     <Link to={id ? `/video/${id}` : `/video/cV2gBU6hKfY`}>
       <CardMedia
         image={snippet?.thumbnails?.high?.url || demoThumbnailUrl}
         alt={snippet?.title}
-        sx={{ width: "100%", objectFit: "cover", aspectRatio: "16 / 9" }}
+        sx={{ width: "100%", objectFit: "cover", aspectRatio: "16 / 9" ,borderRadius: '1rem', }}
       />
     </Link>
-    <CardContent sx={{ backgroundColor: "#1E1E1E", height: "106px" }}>
+    <CardContent>
       <Link to={id ? `/video/${id}` : demoVideoUrl}>
         <Typography variant="subtitle1" fontWeight="bold" color="#FFF">
           {snippet?.title.slice(0, 60) || demoVideoTitle.slice(0, 60)}
