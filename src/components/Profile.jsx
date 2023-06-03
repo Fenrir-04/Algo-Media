@@ -20,7 +20,7 @@ const Profile = () => {
   const logout = async () => {
     try {
       await logOut();
-      console.log("logged out");
+      setAnchorEl(null);
     } catch (err) {
       throw err;
     }
@@ -34,7 +34,12 @@ const Profile = () => {
       {user ? (
         <>
           <Avatar onClick={handleClick} sx={{ cursor: "pointer" }} src={user.photoURL} />
-          <Popover
+          
+        </>
+      ) : (
+        <Button onClick={() => Navigate("/auth/login")}>Signin</Button>
+      )}
+      <Popover
             id={id}
             open={open}
             anchorEl={anchorEl}
@@ -48,10 +53,6 @@ const Profile = () => {
               <Button onClick={logout}>Logout</Button>
             </Typography>
           </Popover>
-        </>
-      ) : (
-        <Button onClick={() => Navigate("/auth/login")}>Signin</Button>
-      )}
     </>
   );
 };
