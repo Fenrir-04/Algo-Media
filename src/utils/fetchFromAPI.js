@@ -1,30 +1,62 @@
 import axios from "axios";
+import { defer } from "react-router-dom";
 
-export const BASE_URL = "https://youtube-v31.p.rapidapi.com";
+export const BASE_URL = "https://www.googleapis.com/youtube/v3";
 
+const apiKey = process.env.REACT_APP_APIKEY;
 const options = {
   method: "GET",
-  url: "https://youtube-v31.p.rapidapi.com/captions",
-  params: { part: "snippet", videoId: "M7FIvfx5J10" },
-  headers: {
-    'X-RapidAPI-Key': process.env.REACT_APP_API ||  '01fb8d7063msh3ad668189e06297p108423jsn1f30a28cfb1a',
-    'X-RapidAPI-Host': 'youtube-v31.p.rapidapi.com'
-  }
+  params: { part: "snippet", key: apiKey },
 };
 
 export const fetchFromAPI = async (url) => {
-  const { data } = await axios.get(`${BASE_URL}/${url}`, options);
+  try{
+    const { data } = await axios.get(`${BASE_URL}/${url}`, options);
+    return data;
+  }catch(err){
+    throw err;
+  }
+};
 
-  return data;
+export const fetchVideos = async ({ request }) => {
+  const category = new URL(request.url).searchParams.get("q") || false;
+  const endPoint = `videos?regionCode=US&chart=mostPopular&${
+    category && `videoCategoryId=${category}`
+  }`;
+  return defer({ data: fetchFromAPI(endPoint) });
+};
+
+export const fetchChannel = async ({ params }) => {
+  const { id } = params;
+  const channelData = fetchFromAPI(`channels?part=snippet&id=${id}`);
+  const videosData = fetchFromAPI(
+    `search?channelId=${id}&part=snippet%2Cid&order=date`
+  );
+  return { channelData, videosData };
+};
+
+export const fetchSearch = async ({ params }) => {
+  const searchTerm = params.searchTerm;
+  const data = fetchFromAPI(`search?part=snippet&q=${searchTerm}`);
+  console.log(data);
+  return defer({ data: data });
+};
+
+export const videoDetails = async ({ params }) => {
+  const { id } = params;
+  const videoData = fetchFromAPI(`videos?part=snippet,statistics&id=${id}`);
+  const videosData = fetchFromAPI(
+    `search?part=snippet&relatedToVideoId=${id}&type=video`
+  );
+  return { videoData, videosData };
 };
 
 export const fetchSuggestionFromSearchText = async (q, signal) => {
   const options = {
     method: "GET",
-    params: { part: "snippet", q },
+    params: { part: "snippet", q, key: apiKey },
     headers: {
-      "X-RapidAPI-Key": "01fb8d7063msh3ad668189e06297p108423jsn1f30a28cfb1a",
-      "X-RapidAPI-Host": "youtube-v31.p.rapidapi.com",
+      Authorization: apiKey,
     },
     signal,
   };

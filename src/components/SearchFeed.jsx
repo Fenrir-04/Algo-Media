@@ -1,14 +1,7 @@
 import { Typography, Box } from "@mui/material";
-import { Await, defer, useLoaderData, useParams } from "react-router-dom";
-import { fetchFromAPI } from "../utils/fetchFromAPI";
+import { Await, useLoaderData, useParams } from "react-router-dom";
 import { Loader, Videos } from "./";
 import { Suspense } from "react";
-
-export async function loader({ params }) {
-	const searchTerm = params.searchTerm;
-	const data = fetchFromAPI(`search?part=snippet&q=${searchTerm}`)
-	return defer({ data: data });
-}
 
 const SearchFeed = () => {
 	const dataPromises = useLoaderData()

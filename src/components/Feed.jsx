@@ -1,22 +1,14 @@
 import React, { Suspense } from "react";
 import { Box, Stack, Typography } from "@mui/material";
-import { Await, defer, useLoaderData, useSearchParams } from "react-router-dom";
-
-import { fetchFromAPI } from "../utils/fetchFromAPI";
+import { Await, useLoaderData, useSearchParams } from "react-router-dom";
 import { Videos, Sidebar } from "./";
 import ScrollToTopButton from "./TopButton";
 import Loader from "./Loader";
-
-export async function loader({ request }) {
-	const category = new URL(request.url).searchParams.get("q") || "New";
-	return defer({ data: fetchFromAPI(`search?part=snippet&q=${category}`)});
-}
 
 const Feed = () => {
 	const [searchParams] = useSearchParams()
 	const selectedCategory = searchParams.get("q") || "New";
 	const dataPromises = useLoaderData();
-
 	let year = new Date().getFullYear();
 
 	return (

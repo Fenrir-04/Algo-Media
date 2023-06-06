@@ -5,16 +5,8 @@ import { Typography, Box, Stack } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import moment from "moment";
 import { Videos } from "./";
-import { fetchFromAPI } from "../utils/fetchFromAPI";
 import { dateFormat } from "../utils/constants";
 import Loader from "./Loader";
-
-export async function loader({ params }) {
-  const { id } = params;
-  const videoData = fetchFromAPI(`videos?part=snippet,statistics&id=${id}`);
-  const videosData = fetchFromAPI(`search?part=snippet&relatedToVideoId=${id}&type=video`);
-  return { videoData, videosData };
-}
 
 const VideoDetail = () => {
   const dataPromises = useLoaderData();

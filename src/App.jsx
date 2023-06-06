@@ -6,11 +6,17 @@ import {
 } from "react-router-dom";
 
 import { ChannelDetail, VideoDetail, SearchFeed, Feed, Layout } from "./components";
+
 import {loader as feedLoader} from "./components/Feed";
 import {loader as searchFeedLoader} from "./components/SearchFeed";
 import {loader as videoDetailLoader} from "./components/VideoDetail";
 import {loader as channelDetailLoader} from "./components/ChannelDetail";
 import ErrorPage from "./components/404Errorpage";
+import {fetchVideos as feedLoader} from "./utils/fetchFromAPI";
+import {fetchSearch as searchFeedLoader} from "./utils/fetchFromAPI";
+import {videoDetails as videoDetailLoader} from "./utils/fetchFromAPI";
+import {fetchChannel as channelDetailLoader} from "./utils/fetchFromAPI";
+
 
 const router = createBrowserRouter(
     createRoutesFromElements(
