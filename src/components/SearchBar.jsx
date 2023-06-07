@@ -57,39 +57,40 @@ const SearchBar = () => {
 
   return (
     <Autocomplete
-      id="free-solo-demo"
-      freeSolo
-      options={recommendations.map((option) => option.title)}
-      hiddenLabel="true"
-      onChange={(e, value) => handleSelect(e, value)}
-      sx={{
-        width: "300px",
-        background: "white",
-        borderRadius: "30px",
-        display: "flex",
-      }}
-      renderInput={(params) => (
-        <>
-          <TextField
-            placeholder="search"
-            {...params}
-            sx={{ background: "white", borderRadius: "30px" }}
-            value={searchTerm}
-            onChange={handleTextType}
-            variant="outlined"
-            fullWidth
-          />
-          <IconButton
-            type="submit"
-            onClick={onhandleSubmit}
-            sx={{ p: "10px", color: "red" }}
-            aria-label="search"
-          >
-            <SearchIcon />
-          </IconButton>
-        </>
-      )}
-    />
+    id="free-solo-demo"
+    freeSolo
+    options={recommendations.map((option) => option.title)}
+    hiddenLabel="true"
+    onChange={(e, value) => handleSelect(e, value)}
+    sx={{
+      width: "250px",
+      height: "50px",
+      background: "white",
+      borderRadius: "30px",
+      display: "flex",
+      alignItems: "center" // add this line
+    }}
+    renderInput={(params) => (
+      <>
+        <TextField
+          placeholder="search"
+          {...params}
+          sx={{ background: "white",height:"50px",borderRadius: "30px" }}
+          value={searchTerm}
+          onChange={handleTextType}
+          fullWidth
+        />
+        <IconButton
+          type="submit"
+          onClick={onhandleSubmit}
+          sx={{ p: "10px", color: "red" }}
+          aria-label="search"
+        >
+          <SearchIcon />
+        </IconButton>
+      </>
+    )}
+  />
   );
 };
 

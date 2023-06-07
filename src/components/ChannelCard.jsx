@@ -23,7 +23,17 @@ const ChannelCard = ({ channelDetail, marginTop }) => (
         <CardMedia
           image={channelDetail?.snippet?.thumbnails?.high?.url || demoProfilePicture}
           alt={channelDetail?.snippet?.title}
-          sx={{ borderRadius: '50%', height: '180px', width: "100%", mb: 2, border: '1px solid #e3e3e3' }}
+          sx={{
+            borderRadius: '50%',
+            height: '180px',
+            width: '180px',
+            mb: 2,
+            border: '1px solid #e3e3e3',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            margin: 'auto'
+          }}
         />
         <Typography variant="h6">
           {channelDetail?.snippet?.title}{' '}
@@ -31,18 +41,21 @@ const ChannelCard = ({ channelDetail, marginTop }) => (
         </Typography>
         {channelDetail?.statistics?.subscriberCount && (
           <Typography sx={{ fontSize: '15px', fontWeight: 500, color: 'gray' }}>
-            {parseInt(channelDetail?.statistics?.subscriberCount).toLocaleString('en-US')} 
-             <span
-               style={{
-                 backgroundColor: 'red',
-                 border: '2px solid black',
-                 borderRadius: '5px',
-                 padding: '8px 10px',
-                 color:'white',
-                 marginLeft:'20px',
-              }}
+            {parseInt(channelDetail?.statistics?.subscriberCount).toLocaleString('en-US')}
+            <span
+              style={{ backgroundColor: 'red', border: '2px solid black', borderRadius: '5px', padding: '8px 10px', color:'white', marginLeft:'20px' }}
             >
               Subscribers
+            </span>
+          </Typography>
+        )}
+        {channelDetail?.statistics?.viewCount && (
+          <Typography sx={{ fontSize: '15px', fontWeight: 500, color: 'gray' }}>
+            {parseInt(channelDetail?.statistics?.viewCount).toLocaleString('en-US')}
+            <span
+              style={{ backgroundColor: 'blue', border: '2px solid black', borderRadius: '5px', padding: '8px 10px', color:'white', marginLeft:'20px' }}
+            >
+              Views
             </span>
           </Typography>
         )}
