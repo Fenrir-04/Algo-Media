@@ -58,6 +58,15 @@ To get started with Algo-Media, follow these steps:
    ```
    REACT_APP_APIKEY= your_youtube_api_key
    ```
+5. Configure Firebase: Configure your Project in [Google Firebase](https://console.firebase.google.com/). Enable Authentication through Native Providers(email/password) and Google. Add these keys in .env file:
+    ```
+    REACT_APP_FIREBASE_APIKEY = <KEY>
+    REACT_APP_FIREBASE_AUTHDOMAIN = <KEY>
+    REACT_APP_FIREBASE_PROJECTID = <KEY>
+    REACT_APP_FIREBASE_STORAGEBUCKET = <KEY>
+    REACT_APP_FIREBASE_MESSAGING_SENDER_ID = <KEY>
+    REACT_APP_FIREBASE_APPID = <KEY>
+    ```
 5. Run the application: Start the development server by running the following command:
    ```
    npm start
