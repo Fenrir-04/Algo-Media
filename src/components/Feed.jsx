@@ -7,7 +7,7 @@ import Loader from "./Loader";
 
 const Feed = () => {
 	const [searchParams] = useSearchParams()
-	const selectedCategory = searchParams.get("q") || "New";
+	const selectedCategory = searchParams.get("category") || "New";
 	const dataPromises = useLoaderData();
 	let year = new Date().getFullYear();
 
