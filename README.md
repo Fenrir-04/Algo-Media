@@ -1,6 +1,8 @@
 🎯 **Algo-Media**
 
-Welcome to Algo-Media! 🎉 Algo-Media is a React-based video streaming application that allows users to watch YouTube videos. It utilizes the official YouTube v3 API from Google to fetch and display videos.
+<div id="top"></div>
+
+Welcome to Algo-Media! 🎉 Algo-Media is a React-based video streaming application that allows users to watch YouTube videos. It utilizes the YouTube v3 API provided by RapidAPI to fetch and display videos.
 
 <div align="center">
   <br>
@@ -58,6 +60,15 @@ To get started with Algo-Media, follow these steps:
    ```
    REACT_APP_APIKEY= your_youtube_api_key
    ```
+5. Configure Firebase: Configure your Project in [Google Firebase](https://console.firebase.google.com/). Enable Authentication through Native Providers(email/password) and Google. Add these keys in .env file:
+    ```
+    REACT_APP_FIREBASE_APIKEY = <KEY>
+    REACT_APP_FIREBASE_AUTHDOMAIN = <KEY>
+    REACT_APP_FIREBASE_PROJECTID = <KEY>
+    REACT_APP_FIREBASE_STORAGEBUCKET = <KEY>
+    REACT_APP_FIREBASE_MESSAGING_SENDER_ID = <KEY>
+    REACT_APP_FIREBASE_APPID = <KEY>
+    ```
 5. Run the application: Start the development server by running the following command:
    ```
    npm start
@@ -114,3 +125,5 @@ We would like to thank the following contributors for their valuable contributio
 </div>
 
   
+
+<p align="right">(<a href="#top">Back to top</a>)</p>
