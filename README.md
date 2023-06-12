@@ -1,6 +1,8 @@
 🎯 **Algo-Media**
 
-Welcome to Algo-Media! 🎉 Algo-Media is a React-based video streaming application that allows users to watch YouTube videos. It utilizes the official YouTube v3 API from Google to fetch and display videos.
+<div id="top"></div>
+
+Welcome to Algo-Media! 🎉 Algo-Media is a React-based video streaming application that allows users to watch YouTube videos. It utilizes the YouTube v3 API provided by RapidAPI to fetch and display videos.
 
 <div align="center">
   <br>
@@ -123,3 +125,5 @@ We would like to thank the following contributors for their valuable contributio
 </div>
 
   
+
+<p align="right">(<a href="#top">Back to top</a>)</p>
