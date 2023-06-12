@@ -21,7 +21,7 @@ Welcome to Algo-Media! 🎉 Algo-Media is a React-based video streaming applicat
 
 # Algo-Media
 
-Algo-Media is a React-based video streaming application inspired by platforms like YouTube. It allows users to watch YouTube videos directly within the application. This repository serves as the codebase for the Algo-Media project, and it utilizes the YouTube v3 API, which is accessed through the RapidAPI service.
+Algo-Media is a React-based video streaming application inspired by platforms like YouTube. It allows users to watch YouTube videos directly within the application. This repository serves as the codebase for the Algo-Media project, and it utilizes the YouTube v3 API.
 
 ## 📚 Table of Contents
 
@@ -36,7 +36,7 @@ Algo-Media is a React-based video streaming application inspired by platforms li
 
 ## 👋 Introduction
 
-The Algo-Media application leverages the powerful YouTube v3 API, which enables the retrieval of video data such as titles, descriptions, channel information, and more. By utilizing the RapidAPI service, the application seamlessly integrates with the YouTube API to provide users with an immersive video streaming experience.
+The Algo-Media application leverages the powerful YouTube v3 API, which enables the retrieval of video data such as titles, descriptions, channel information, and more. By utilizing the API, the application seamlessly integrates with the YouTube API to provide users with an immersive video streaming experience.
 
 ## ⚙️ Installation
 
@@ -56,10 +56,19 @@ To get started with Algo-Media, follow these steps:
    ```
    npm install
    ```
-4. Configure API keys: Obtain API keys for the YouTube v3 API from RapidAPI by signing up on RapidAPI and subscribing to the [YouTube v3 API](https://rapidapi.com/ytdlfree/api/youtube-v31/). Once you have the API keys, create a .env file in the root directory of the project and add the following:
+4. Configure API keys: Obtain API keys for the YouTube v3 API by signing up on Google Developer Console and enabling to the [YouTube v3 API](https://console.cloud.google.com/apis/library/youtube.googleapis.com). Once you have the API keys, create a .env file in the root directory of the project and add the following:
    ```
-   REACT_APP_RAPID_API_KEY= your_youtube_api_key
+   REACT_APP_APIKEY= your_youtube_api_key
    ```
+5. Configure Firebase: Configure your Project in [Google Firebase](https://console.firebase.google.com/). Enable Authentication through Native Providers(email/password) and Google. Add these keys in .env file:
+    ```
+    REACT_APP_FIREBASE_APIKEY = <KEY>
+    REACT_APP_FIREBASE_AUTHDOMAIN = <KEY>
+    REACT_APP_FIREBASE_PROJECTID = <KEY>
+    REACT_APP_FIREBASE_STORAGEBUCKET = <KEY>
+    REACT_APP_FIREBASE_MESSAGING_SENDER_ID = <KEY>
+    REACT_APP_FIREBASE_APPID = <KEY>
+    ```
 5. Run the application: Start the development server by running the following command:
    ```
    npm start
@@ -108,8 +117,10 @@ Thank you for considering contributing to Algo-Media! Your contributions will pl
 We would like to thank the following contributors for their valuable contributions to Algo-Media:
 
 <div align="center">
-  <a href="https://github.com/Fenrir-04/Algo-Media/graphs/contributors">
+<a href="https://github.com/Fenrir-04/Algo-Media/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=Fenrir-04/Algo-Media" />
+</a>
+
 </a>
 </div>
 
