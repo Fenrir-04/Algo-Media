@@ -4,21 +4,17 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from "react-router-dom";
+import {lazy,Suspense} from 'react';
 
-import {
-  ChannelDetail,
-  VideoDetail,
-  SearchFeed,
-  Feed,
-  Layout,
-} from "./components";
-import { fetchVideos as feedLoader } from "./utils/fetchFromAPI";
-import { fetchSearch as searchFeedLoader } from "./utils/fetchFromAPI";
-import { videoDetails as videoDetailLoader } from "./utils/fetchFromAPI";
-import { fetchChannel as channelDetailLoader } from "./utils/fetchFromAPI";
-import Login from "./components/Auth/Login";
-import Signup from "./components/Auth/Signup";
+import { ChannelDetail, VideoDetail, SearchFeed, Feed, Layout,Loader } from "./components";
+import {fetchVideos as feedLoader} from "./utils/fetchFromAPI";
+import {fetchSearch as searchFeedLoader} from "./utils/fetchFromAPI";
+import {videoDetails as videoDetailLoader} from "./utils/fetchFromAPI";
+import {fetchChannel as channelDetailLoader} from "./utils/fetchFromAPI";
 import { AuthContextProvider } from "./context/AuthContext";
+
+const Login=lazy(()=>import("./components/Auth/Login"));
+const Signup=lazy(()=>import("./components/Auth/Signup"));
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -49,7 +45,9 @@ const router = createBrowserRouter(
 
 const App = () => (
   <AuthContextProvider>
-    <RouterProvider router={router} />
+    <Suspense fallback={<Loader/>}>
+      <RouterProvider router={router} />
+    </Suspense>;
   </AuthContextProvider>
 );
 
