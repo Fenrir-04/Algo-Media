@@ -12,6 +12,20 @@ import {
   dateFormat,
 } from "../utils/constants";
 
+function handleMouseEnter(event)
+{
+  this.setState({
+    height : this.initialHeight + 10,
+    width : this.initialWidth + 10,
+  })
+}
+function handleMouseLeave(event)
+{
+  this.setState({
+    height : this.initialHeight,
+    width : this.initialWidth,
+  })
+}
 const VideoCard = ({video}) =>{
   const id = video.id.videoId?video.id.videoId: video.id;
   const {snippet} = video;
@@ -20,7 +34,9 @@ const VideoCard = ({video}) =>{
     sx={{
       boxShadow: "none",
       borderRadius: 0,
-      backgroundColor: 'black'
+      backgroundColor: 'black',
+      onmouseenter: {handleMouseEnter},
+      onmouseleave:{handleMouseLeave},
     }}
   >
     <Link to={id ? `/video/${id}` : `/video/cV2gBU6hKfY`}>
