@@ -30,7 +30,7 @@ export const fetchVideos = async ({ request, pageToken }) => {
   const endPoint = `videos?regionCode=US&chart=mostPopular&${
     category && `videoCategoryId=${category}`
   }`;
-  return defer({ data: fetchFromAPI(endPoint, pageToken) });
+  return fetchFromAPI(endPoint, pageToken);
 };
 
 export const fetchChannel = async ({ params }) => {

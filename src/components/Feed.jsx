@@ -1,51 +1,57 @@
 import React, { Suspense, useEffect, useRef } from "react";
 import { Box, Stack, Typography } from "@mui/material";
-import { Await, useLoaderData, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { Videos, Sidebar } from "./";
 import ScrollToTopButton from "./TopButton";
 import Loader from "./Loader";
-import { fetchFromAPI, fetchVideos } from "../utils/fetchFromAPI";
+import { fetchVideos } from "../utils/fetchFromAPI";
 
 const Feed = () => {
   const [searchParams] = useSearchParams();
   const selectedCategory = searchParams.get("category") || "New";
-  const dataPromises = useLoaderData();
-  console.log(dataPromises);
+
   const year = new Date().getFullYear();
   const nexPageToken = useRef(null);
-  const containerRef = useRef(null);
   const [videosToDisplay, setVideosToDisplay] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(false);
-  const [isFirstLoad, setIsFirstLoad] = React.useState(true);
 
   useEffect(() => {
     const handleScroll = async () => {
-      console.log(
-        window.innerHeight,
-        document.documentElement.scrollTop,
-        document.documentElement.offsetHeight
-      );
-      if (
-        (window.innerHeight + document.documentElement.scrollTop) * 1.5 >
-          document.documentElement.offsetHeight &&
-        !isLoading
-      ) {
-        setIsLoading(true);
-        const res = fetchVideos({ pageToken: nexPageToken.current });
-        console.log(res);
-        setVideosToDisplay([...videosToDisplay, ...res.items]);
-        // nexPageToken.current = res.nextPageToken;
-        setIsFirstLoad(false);
+      const scrollTop =
+        window.pageYOffset || document.documentElement.scrollTop;
+      const scrollHeight = document.documentElement.scrollHeight;
+      const clientHeight = document.documentElement.clientHeight;
+      // console.log(scrollTop, clientHeight, scrollHeight);
+      if (scrollTop + clientHeight >= scrollHeight && !isLoading) {
+        console.log("fetch data");
+        fetchData();
       }
       return;
-      // When the user reaches the bottom of the container, load more videos
-
-      // loadMoreVideos();
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    setIsLoading(true);
+    try {
+      const response = await fetchVideos({
+        pageToken: nexPageToken.current,
+      });
+      const { items, nextPageToken } = response;
+      setVideosToDisplay((prevState) => [...prevState, ...items]);
+      nexPageToken.current = nextPageToken;
+    } catch (error) {
+      console.error("Error fetching videos:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <Stack sx={{ flexDirection: { sx: "column", md: "row" } }}>
@@ -78,14 +84,7 @@ const Feed = () => {
         </Typography>
 
         <Suspense fallback={<Loader />}>
-          <Await resolve={dataPromises.data}>
-            {(data) => {
-              console.log("data promise", data);
-              nexPageToken.current = data.nextPageToken;
-              setVideosToDisplay([...videosToDisplay, ...data.items]);
-              return <Videos videos={data.items} />;
-            }}
-          </Await>
+          <Videos videos={videosToDisplay} />
         </Suspense>
       </Box>
       <ScrollToTopButton />
