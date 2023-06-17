@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect, useRef } from "react";
+import React, { Suspense, useEffect, useRef, useState } from "react";
 import { Box, Stack, Typography } from "@mui/material";
 import { useSearchParams } from "react-router-dom";
 import { Videos, Sidebar } from "./";
@@ -9,11 +9,10 @@ import { fetchVideos } from "../utils/fetchFromAPI";
 const Feed = () => {
   const [searchParams] = useSearchParams();
   const selectedCategory = searchParams.get("category") || "New";
-
   const year = new Date().getFullYear();
   const nexPageToken = useRef(null);
-  const [videosToDisplay, setVideosToDisplay] = React.useState([]);
-  const [isLoading, setIsLoading] = React.useState(false);
+  const [videosToDisplay, setVideosToDisplay] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const handleScroll = async () => {
@@ -21,9 +20,9 @@ const Feed = () => {
         window.pageYOffset || document.documentElement.scrollTop;
       const scrollHeight = document.documentElement.scrollHeight;
       const clientHeight = document.documentElement.clientHeight;
-      // console.log(scrollTop, clientHeight, scrollHeight);
+
+      //condition to check whether we have reached end of page
       if (scrollTop + clientHeight >= scrollHeight && !isLoading) {
-        console.log("fetch data");
         fetchData();
       }
       return;
