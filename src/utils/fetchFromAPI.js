@@ -1,29 +1,31 @@
 import axios from "axios";
-import { defer } from "react-router-dom";
 
 export const BASE_URL = "https://www.googleapis.com/youtube/v3";
 
 const apiKey = process.env.REACT_APP_APIKEY;
+
 const options = {
   method: "GET",
-  params: { part: "snippet", key: apiKey },
+  params: { part: "snippet", key: apiKey, maxResults: 10 },
 };
 
-export const fetchFromAPI = async (url) => {
-  try{
+export const fetchFromAPI = async (url, pageToken) => {
+  try {
+    if (pageToken) options.params.pageToken = pageToken;
     const { data } = await axios.get(`${BASE_URL}/${url}`, options);
     return data;
-  }catch(err){
+  } catch (err) {
     throw err;
   }
 };
 
-export const fetchVideos = async ({ request }) => {
-  const category = new URL(request.url).searchParams.get("q") || false;
+export const fetchVideos = async ({ request, pageToken }) => {
+  let category;
+  if (request) category = new URL(request.url).searchParams.get("q") || false;
   const endPoint = `videos?regionCode=US&chart=mostPopular&${
     category && `videoCategoryId=${category}`
   }`;
-  return defer({ data: fetchFromAPI(endPoint) });
+  return fetchFromAPI(endPoint, pageToken);
 };
 
 export const fetchChannel = async ({ params }) => {
@@ -35,11 +37,9 @@ export const fetchChannel = async ({ params }) => {
   return { channelData, videosData };
 };
 
-export const fetchSearch = async ({ params }) => {
-  const searchTerm = params.searchTerm;
-  const data = fetchFromAPI(`search?part=snippet&q=${searchTerm}`);
-  console.log(data);
-  return defer({ data: data });
+export const fetchSearch = async ({ searchTerm, pageToken }) => {
+  const data = fetchFromAPI(`search?part=snippet&q=${searchTerm}`, pageToken);
+  return data;
 };
 
 export const videoDetails = async ({ params }) => {
