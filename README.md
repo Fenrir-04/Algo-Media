@@ -32,7 +32,7 @@ Algo-Media is a React-based video streaming application inspired by platforms li
 - [👨‍💻 Mentors and Project Admin](#-mentors-and-project-admin)
 - [🤝 Contributing](#-contributing)
 - [📝 License](#-license)
-- [Contributors](#contributors)
+- [🧑‍🤝‍🧑 Contributors](#contributors)
 
 ## 👋 Introduction
 
@@ -112,6 +112,12 @@ Contributions to Algo-Media are always welcome! If you'd like to contribute, ple
 5. Open a pull request.
 
 If you have any questions, suggestions, or need assistance with your contribution in GSSOC'23, feel free to reach out to the mentors or the project admin. They will be happy to help and guide you through the process.
+
+## 📝 License
+
+The project is licensed under the [MIT License](https://github.com/Fenrir-04/Algo-Media/blob/main/LICENSE).
+
+## 🧑‍🤝‍🧑Contributors
 
 Thank you for considering contributing to Algo-Media! Your contributions will play a crucial role in enhancing the functionality and user experience of the application.
 We would like to thank the following contributors for their valuable contributions to Algo-Media:
