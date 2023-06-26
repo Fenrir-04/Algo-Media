@@ -14,27 +14,6 @@ const Feed = () => {
   const [videosToDisplay, setVideosToDisplay] = useState([])
   const [isLoading, setIsLoading] = useState(false)
 
-  useEffect(() => {
-    const handleScroll = async () => {
-      const scrollTop = window.pageYOffset || document.documentElement.scrollTop
-      const scrollHeight = document.documentElement.scrollHeight
-      const clientHeight = document.documentElement.clientHeight
-
-      //condition to check whether we have reached end of page
-      if (scrollTop + clientHeight >= scrollHeight && !isLoading) {
-        fetchData()
-      }
-      return
-    }
-
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
-
-  useEffect(() => {
-    fetchData()
-  }, [])
-
   const fetchData = async () => {
     setIsLoading(true)
     try {
@@ -45,11 +24,27 @@ const Feed = () => {
       setVideosToDisplay((prevState) => [...prevState, ...items])
       nexPageToken.current = nextPageToken
     } catch (error) {
-      console.error('Error fetching videos:', error)
-    } finally {
-      setIsLoading(false)
+      console.error('Error fetching videos:', error);
     }
-  }
+    setIsLoading(false);
+  };
+
+  useEffect(() => {
+    const handleScroll = async () => {
+      const { scrollTop, scrollHeight, clientHeight } =
+        document.documentElement;
+      if (scrollTop + clientHeight >= scrollHeight && !isLoading) {
+        fetchData();
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  });
+  
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
     <Stack sx={{ flexDirection: { sx: 'column', md: 'row' } }}>
