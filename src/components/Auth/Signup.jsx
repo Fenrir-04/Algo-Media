@@ -1,18 +1,23 @@
 import { useState } from "react";
 import { UserAuth } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import {
   Box,
   Button,
   TextField,
   Link,
   Typography,
+  IconButton,
+  InputAdornment,
 } from "@mui/material";
 
 const Signup = () => {
 
   const [input,setInput] = useState('');
   const {signUp} = UserAuth();
+  const [showPassword, setShowPassword] = useState(false)
   const Navigate  = useNavigate();
 
   function handleChange(e){
@@ -64,12 +69,21 @@ const Signup = () => {
           fullWidth
           name="password"
           placeholder="Password"
-          type="password"
+          type={showPassword? "text": "password"}
           id="password"
           autoComplete="current-password"
           sx={{ backgroundColor: "white", borderRadius: "5px",opacity:"0.6" }}
           value={input.password}
           onChange={handleChange}
+          InputProps={{
+        endAdornment: (
+          <InputAdornment position="end">
+            <IconButton onClick={()=>setShowPassword(!showPassword)} edge="end">
+              {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
+            </IconButton>
+          </InputAdornment>
+        ),
+      }}
         />
           <span onClick={()=>Navigate('/auth/login')} style={{cursor:"pointer"}}>
             <Link variant="body1">Sign In</Link>
