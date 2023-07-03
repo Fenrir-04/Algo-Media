@@ -9,6 +9,7 @@ import {
   Link,
   Typography,
 } from "@mui/material";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const [input, setInput] = useState("");
@@ -26,7 +27,7 @@ const Login = () => {
       await logIn(email, password);
       return Navigate("/");
     } catch (err) {
-      alert("Invalid Credentials");
+      toast.error(err.message, { position: "top-center", autoClose: 5000, theme: "colored" });
     }
   };
   const google = async () => {
@@ -34,7 +35,7 @@ const Login = () => {
       await googleAuth();
       return Navigate("/");
     } catch (err) {
-      alert("Inalid Request");
+      toast.error(err.message, { position: "top-center", autoClose: 5000, theme: "colored" });
     }
   };
 
