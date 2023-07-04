@@ -3,6 +3,7 @@ import OndemandVideoIcon from "@mui/icons-material/OndemandVideo";
 import SportsEsportsIcon from "@mui/icons-material/SportsEsports";
 import TheaterComedyIcon from "@mui/icons-material/TheaterComedy";
 import FitnessCenterIcon from "@mui/icons-material/FitnessCenter";
+import CatchingPokemonIcon from '@mui/icons-material/CatchingPokemon';
 
 export const logo = "https://i.ibb.co/s9Qys2j/logo.png";
 
@@ -15,7 +16,9 @@ export const categories = [
   { name: "Entertainment", icon: <TheaterComedyIcon />,categoryId: 24 },
   { name: "News", icon: <TheaterComedyIcon />,categoryId: 25 },
   { name: "Science and Technology", icon: <TheaterComedyIcon />,categoryId: 28 },
-];
+  { name: "Anime", icon: <CatchingPokemonIcon />,categoryId: 1 },
+
+]; 
 
 export const demoThumbnailUrl = "https://i.ibb.co/G2L2Gwp/API-Course.png";
 export const demoChannelUrl = "/channel/UCmXmlB4-HJytD7wek0Uo97A";
@@ -26,3 +29,7 @@ export const demoVideoTitle =
 export const demoProfilePicture =
   "http://dergipark.org.tr/assets/app/images/buddy_sample.png";
 export const dateFormat = "DD/MM/YYYY";
+
+
+
+
