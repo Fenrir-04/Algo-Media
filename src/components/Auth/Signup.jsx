@@ -19,6 +19,7 @@ const Signup = () => {
   const [input,setInput] = useState('');
   const {signUp} = UserAuth();
   const [showPassword, setShowPassword] = useState(false)
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
   const Navigate  = useNavigate();
 
   function handleChange(e){
@@ -27,7 +28,8 @@ const Signup = () => {
 
   const handleSubmit=async(e)=>{
     e.preventDefault();
-    const {email, password} = input;
+    const {email, password, confirmPassword} = input;
+    if(confirmPassword === password){
     try{
       const a = await signUp(email,password);
       console.log(a)
@@ -35,6 +37,8 @@ const Signup = () => {
     } catch (err){
       toast.error(err.message, { position: "top-center", autoClose: 5000, theme: "colored" });
       throw err
+    }}else{
+      alert("Confirm Password does not match with password")
     }
   }
 
@@ -53,38 +57,56 @@ const Signup = () => {
       </Typography>
       <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
         <TextField
-          margin="normal"
           required
-          fullWidth
           id="email"
           placeholder="Email"
           name="email"
           autoComplete="email"
           value={input.email}
-          sx={{ backgroundColor: "white", borderRadius: "5px", opacity:"0.6" }}
+          sx={{ backgroundColor: "white", borderRadius: "5px", opacity:"0.6", width:"450px", margin: "20px auto", display: "flex" }}
           onChange={handleChange}
         />
         <TextField
-          margin="normal"
           required
-          fullWidth
           name="password"
           placeholder="Password"
           type={showPassword? "text": "password"}
           id="password"
           autoComplete="current-password"
-          sx={{ backgroundColor: "white", borderRadius: "5px",opacity:"0.6" }}
+          sx={{ backgroundColor: "white", borderRadius: "5px",opacity:"0.6", display:"flex" }}
           value={input.password}
           onChange={handleChange}
           InputProps={{
-        endAdornment: (
-          <InputAdornment position="end">
-            <IconButton onClick={()=>setShowPassword(!showPassword)} edge="end">
-              {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
-            </IconButton>
-          </InputAdornment>
-        ),
-      }}
+            endAdornment: (
+            <InputAdornment position="end">
+              <IconButton onClick={()=>setShowPassword(!showPassword)} edge="end">
+                {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
+              </IconButton>
+            </InputAdornment>
+            ),
+          }}
+        />
+         <TextField
+          margin="normal"
+          required
+          fullWidth
+          name="confirmPassword"
+          placeholder="Confirm Password"
+          type={showConfirmPassword? "text": "password"}
+          id="confirmPassword"
+          autoComplete="current-password"
+          sx={{ backgroundColor: "white", borderRadius: "5px",opacity:"0.6" }}
+          value={input.confirmPassword}
+          onChange={handleChange}
+          InputProps={{
+            endAdornment: (
+            <InputAdornment position="end">
+              <IconButton onClick={()=>setShowConfirmPassword(!showConfirmPassword)} edge="end">
+                {showConfirmPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
+              </IconButton>
+            </InputAdornment>
+            ),
+          }}
         />
           <span onClick={()=>Navigate('/auth/login')} style={{cursor:"pointer"}}>
             <Link variant="body1">Sign In</Link>
