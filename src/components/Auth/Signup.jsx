@@ -12,6 +12,7 @@ import {
   IconButton,
   InputAdornment,
 } from "@mui/material";
+import { toast } from "react-toastify";
 
 const Signup = () => {
 
@@ -32,7 +33,7 @@ const Signup = () => {
       console.log(a)
       return Navigate('/');
     } catch (err){
-      alert("Invalid Credentials");
+      toast.error(err.message, { position: "top-center", autoClose: 5000, theme: "colored" });
       throw err
     }
   }

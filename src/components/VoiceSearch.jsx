@@ -5,6 +5,7 @@ import { Paper, IconButton } from "@mui/material";
 import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
+import { toast } from "react-toastify";
 
 const VoiceSearch = () => {
   const navigate = useNavigate();
@@ -19,7 +20,7 @@ const VoiceSearch = () => {
 
   useEffect(() => {
     if (!browserSupportsSpeechRecognition) {
-      window.alert(`Your Browser doesn't support this feature.`);
+      toast.error(`Your Browser doesn't support this feature.`, { position: "top-center", autoClose: 5000, theme: "colored" });
     }
   }, [browserSupportsSpeechRecognition]);
 
@@ -32,7 +33,7 @@ const VoiceSearch = () => {
 
   const handleMicButton = () => {
     if (!isMicrophoneAvailable) {
-      return window.alert(`Microphone Permission Not Available`);
+      return toast.error(`Microphone Permission Not Available`, { position: "top-center", autoClose: 5000, theme: "colored" });
     }
     if (listening) {
       stopListening();
