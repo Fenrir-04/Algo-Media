@@ -3,52 +3,58 @@ import {
   RouterProvider,
   createBrowserRouter,
   createRoutesFromElements,
-} from "react-router-dom";
-import {lazy,Suspense} from 'react';
+} from 'react-router-dom'
+import { lazy, Suspense } from 'react'
 
-import { ChannelDetail, VideoDetail, SearchFeed, Feed, Layout,Loader } from "./components";
-import {fetchVideos as feedLoader} from "./utils/fetchFromAPI";
-import {fetchSearch as searchFeedLoader} from "./utils/fetchFromAPI";
-import {videoDetails as videoDetailLoader} from "./utils/fetchFromAPI";
-import {fetchChannel as channelDetailLoader} from "./utils/fetchFromAPI";
-import { AuthContextProvider } from "./context/AuthContext";
-
-const Login=lazy(()=>import("./components/Auth/Login"));
-const Signup=lazy(()=>import("./components/Auth/Signup"));
+import ErrorPage from './components/404Errorpage'
+import {
+  ChannelDetail,
+  VideoDetail,
+  SearchFeed,
+  Feed,
+  Layout,
+  Loader,
+} from './components'
+import {
+  fetchVideos,
+  fetchSearch,
+  videoDetails,
+  fetchChannel,
+} from './utils/fetchFromAPI'
+import { AuthContextProvider } from './context/AuthContext'
+const Login = lazy(() => import('./components/Auth/Login'))
+const Signup = lazy(() => import('./components/Auth/Signup'))
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <>
-    <Route path="/" element={<Layout />}>
-      <Route index loader={feedLoader} element={<Feed />} />
-        <Route
-          path="video/:id"
-          loader={videoDetailLoader}
-          element={<VideoDetail />}
-        />
+    <Route path='/' element={<Layout />}>
+      <Route index loader={fetchVideos} element={<Feed />} />
+      <Route path='video/:id' loader={videoDetails} element={<VideoDetail />} />
       <Route
-        path="channel/:id"
-        loader={channelDetailLoader}
+        path='channel/:id'
+        loader={fetchChannel}
         element={<ChannelDetail />}
       />
       <Route
-        path="search/:searchTerm"
-        loader={searchFeedLoader}
+        path='search/:searchTerm'
+        loader={fetchSearch}
         element={<SearchFeed />}
       />
-      <Route path="auth/login" element={<Login />} />
-      <Route path="auth/signup" element={<Signup />} />
+      <Route path='/:playlist' element={<Feed />} />
+      <Route path='auth/login' element={<Login />} />
+      <Route path='auth/signup' element={<Signup />} />
+      <Route path='*' loader={fetchSearch} element={<ErrorPage />} />
     </Route>
-    </>
   )
-);
+)
 
 const App = () => (
   <AuthContextProvider>
-    <Suspense fallback={<Loader/>}>
+    <Suspense fallback={<Loader />}>
       <RouterProvider router={router} />
-    </Suspense>;
+    </Suspense>
+    ;
   </AuthContextProvider>
-);
+)
 
-export default App;
+export default App

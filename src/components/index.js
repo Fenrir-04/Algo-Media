@@ -1,4 +1,4 @@
-import {lazy} from 'react';
+import { lazy } from "react";
 
 export { default as ChannelCard } from "./ChannelCard";
 export { default as VideoCard } from "./VideoCard";
@@ -14,4 +14,4 @@ const ChannelDetail = lazy(() => import("./ChannelDetail"));
 const VideoDetail = lazy(() => import("./VideoDetail"));
 const SearchFeed = lazy(() => import("./SearchFeed"));
 
-export {ChannelDetail,VideoDetail,SearchFeed}
+export { ChannelDetail, VideoDetail, SearchFeed };
