@@ -13,34 +13,59 @@ import {
   InputAdornment,
 } from "@mui/material";
 import { toast } from "react-toastify";
+import validation from "../../common/validation";
 
 const Signup = () => {
 
-  const [input,setInput] = useState('');
   const {signUp} = UserAuth();
   const [showPassword, setShowPassword] = useState(false)
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [form, setForm] = useState({
+   email: "",
+   password: "",
+   confirmPassword: ""
+  });
+  const [error, setError] = useState({
+    email: true, password: true, confirmPassword: true
+  })
   const Navigate  = useNavigate();
 
   function handleChange(e){
-    setInput({...input,[e.target.name]: e.target.value})
+    const {name, value} = e.target;
+    setForm((prev)=>{
+      return {...prev, [name]: value}
+    })
+    let errorMessage = validation[name](value);
+    if(name === "confirmPassword") errorMessage = validation.confirmPassword(value, form.password)
+    setError((prev)=>{
+      return {...prev, ...errorMessage}
+    })
   }
 
   const handleSubmit=async(e)=>{
     e.preventDefault();
-    const {email, password, confirmPassword} = input;
-    if(confirmPassword === password){
+    console.log("Submit")
+     let submitable = true;
+     Object.values(error).forEach((e)=>{
+       if(e !== false){
+        submitable = false;
+        return;
+       }
+     })
+     if(submitable){
     try{
-      const a = await signUp(email,password);
+      const a = await signUp(signUp.email,signUp.password);
       console.log(a)
       return Navigate('/');
     } catch (err){
       toast.error(err.message, { position: "top-center", autoClose: 5000, theme: "colored" });
       throw err
-    }}else{
-      alert("Confirm Password does not match with password")
     }
+  }else{
+     alert("Please fill all fields with valid data.")
   }
+  }
+  
 
   return (
     <Box
@@ -62,10 +87,11 @@ const Signup = () => {
           placeholder="Email"
           name="email"
           autoComplete="email"
-          value={input.email}
+          value={form.email}
           sx={{ backgroundColor: "white", borderRadius: "5px", opacity:"0.6", width:"450px", margin: "20px auto", display: "flex" }}
           onChange={handleChange}
         />
+        {error.email && error.emailError && <p className="formError">{error.emailError}</p>}
         <TextField
           required
           name="password"
@@ -74,7 +100,7 @@ const Signup = () => {
           id="password"
           autoComplete="current-password"
           sx={{ backgroundColor: "white", borderRadius: "5px",opacity:"0.6", display:"flex" }}
-          value={input.password}
+          value={form.password}
           onChange={handleChange}
           InputProps={{
             endAdornment: (
@@ -86,6 +112,8 @@ const Signup = () => {
             ),
           }}
         />
+        {error.password && error.passwordError && <p className="formError">{error.passwordError}</p>}
+
          <TextField
           margin="normal"
           required
@@ -96,7 +124,7 @@ const Signup = () => {
           id="confirmPassword"
           autoComplete="current-password"
           sx={{ backgroundColor: "white", borderRadius: "5px",opacity:"0.6" }}
-          value={input.confirmPassword}
+          value={form.confirmPassword}
           onChange={handleChange}
           InputProps={{
             endAdornment: (
@@ -108,6 +136,7 @@ const Signup = () => {
             ),
           }}
         />
+          {error.confirmPassword && error.confirmPasswordError && <p className="formError">{error.confirmPasswordError}</p>}
           <span onClick={()=>Navigate('/auth/login')} style={{cursor:"pointer"}}>
             <Link variant="body1">Sign In</Link>
           </span>

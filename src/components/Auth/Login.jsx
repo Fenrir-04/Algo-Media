@@ -13,26 +13,50 @@ import {
   InputAdornment
 } from "@mui/material";
 import { toast } from "react-toastify";
+import validation from "../../common/validation";
 
 const Login = () => {
-  const [input, setInput] = useState("");
+  const [login, setLogin] = useState({
+    email: "",
+    password: ""
+  });
+  const [error, setError] = useState({
+    email: true, password: true
+  })
   const { logIn, googleAuth, user } = UserAuth();
   const [showPassword, setShowPassword] = useState(false)
   const Navigate = useNavigate();
 
   function handleChange(e) {
-    setInput({ ...input, [e.target.name]: e.target.value });
+    const {name, value} = e.target;
+    setLogin((prev)=>{
+      return {...prev, [name]: value}
+    })
+    const errorMessage = validation[name](value);
+    setError((prev)=>{
+      return {...prev, ...errorMessage}
+    })
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { email, password } = input;
+    let submitable = true;
+    Object.values(error).forEach((e)=>{
+      if(e !== false){
+       submitable = false;
+       return;
+      }
+    })
+    if(submitable){
     try {
-      await logIn(email, password);
+      await logIn(logIn.email, login.password);
       return Navigate("/");
     } catch (err) {
       toast.error(err.message, { position: "top-center", autoClose: 5000, theme: "colored" });
     }
+  }else{
+    alert("Please fill all fields with valid data.")
+  }
   };
   const google = async () => {
     try {
@@ -65,10 +89,11 @@ const Login = () => {
           placeholder="Email"
           name="email"
           autoComplete="email"
-          value={input.email}
+          value={login.email}
           sx={{ backgroundColor: "white", borderRadius: "5px", opacity:"0.6" }}
           onChange={handleChange}
         />
+         {error.email && error.emailError && <p className="formError">{error.emailError}</p>}
         <TextField
           margin="normal"
           required
@@ -79,7 +104,7 @@ const Login = () => {
           id="password"
           autoComplete="current-password"
           sx={{ backgroundColor: "white", borderRadius: "5px",opacity:"0.6" }}
-          value={input.password}
+          value={login.password}
           onChange={handleChange}
           InputProps={{
         endAdornment: (
@@ -91,6 +116,7 @@ const Login = () => {
         ),
       }}
         />
+         {error.password && error.passwordError && <p className="formError">{error.passwordError}</p>}
         <Typography
           variant="body1"
           sx={{
