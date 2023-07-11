@@ -1,18 +1,21 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Stack } from '@mui/material'
 import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd'
 import { categories } from '../utils/constants'
-import { useSearchParams, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 const Categories = () => {
   const navigate = useNavigate()
-  const [searchParams, setSearchParams] = useSearchParams()
-  const selectedCategory = searchParams.get('q')
+  const [selectedCategory, setSelectedCategory] = useState('')
 
-  const handleSearchParams = (params) => {
-    const queryString = new URLSearchParams(params).toString()
-    navigate(`/playlist?${queryString}`)
+
+  const handleSearchParams = (params, type) => {
+    const searchParams = new URLSearchParams(params)
+    const category = searchParams.get('category')
+    setSelectedCategory(category)
+    navigate(`/${type}?${searchParams.toString()}`)
   }
+
   return (
     <Stack
       direction='row'
@@ -26,7 +29,13 @@ const Categories = () => {
         <button
           className='category-btn'
           onClick={() =>
-            setSearchParams({ q: category.categoryId, category: category.name })
+            handleSearchParams(
+              {
+                q: category.categoryId,
+                category: category.name,
+              },
+              'feed'
+            )
           }
           style={{
             background:
@@ -64,7 +73,7 @@ const Categories = () => {
       ))}
       <button
         className='category-btn'
-        onClick={() => handleSearchParams({ q: 'watchlist' })}
+        onClick={() => handleSearchParams({ q: 'watchlist' }, 'playlist')}
         style={{
           background: selectedCategory === 'watchlist' && '#FC1503',
           color: 'white',
@@ -72,21 +81,15 @@ const Categories = () => {
       >
         <span
           style={{
-            color:
-              selectedCategory === 'watchlist'
-                ? 'white'
-                : 'red',
+            color: selectedCategory === 'watchlist' ? 'white' : 'red',
             marginRight: '15px',
           }}
         >
-          <PlaylistAddIcon/>
+          <PlaylistAddIcon />
         </span>
         <span
           style={{
-            opacity:
-               selectedCategory === 'watchlist'
-                ? '1'
-                : '0.8',
+            opacity: selectedCategory === 'watchlist' ? '1' : '0.8',
           }}
         >
           WatchList
