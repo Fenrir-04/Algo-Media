@@ -9,10 +9,11 @@ const Categories = () => {
   const [searchParams, setSearchParams] = useSearchParams()
   const selectedCategory = searchParams.get('q')
 
-  const handleSearchParams = (params) => {
+  const handleSearchParams = (params, type) => {
     const queryString = new URLSearchParams(params).toString()
-    navigate(`/playlist?${queryString}`)
+    navigate(`/${type}?${queryString}`)
   }
+
   return (
     <Stack
       direction='row'
@@ -26,7 +27,13 @@ const Categories = () => {
         <button
           className='category-btn'
           onClick={() =>
-            setSearchParams({ q: category.categoryId, category: category.name })
+            handleSearchParams(
+              {
+                q: category.categoryId,
+                category: category.name,
+              },
+              'feed'
+            )
           }
           style={{
             background:
@@ -64,7 +71,7 @@ const Categories = () => {
       ))}
       <button
         className='category-btn'
-        onClick={() => handleSearchParams({ q: 'watchlist' })}
+        onClick={() => handleSearchParams({ q: 'watchlist' }, 'playlist')}
         style={{
           background: selectedCategory === 'watchlist' && '#FC1503',
           color: 'white',
@@ -72,21 +79,15 @@ const Categories = () => {
       >
         <span
           style={{
-            color:
-              selectedCategory === 'watchlist'
-                ? 'white'
-                : 'red',
+            color: selectedCategory === 'watchlist' ? 'white' : 'red',
             marginRight: '15px',
           }}
         >
-          <PlaylistAddIcon/>
+          <PlaylistAddIcon />
         </span>
         <span
           style={{
-            opacity:
-               selectedCategory === 'watchlist'
-                ? '1'
-                : '0.8',
+            opacity: selectedCategory === 'watchlist' ? '1' : '0.8',
           }}
         >
           WatchList
