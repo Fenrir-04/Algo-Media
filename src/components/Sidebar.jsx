@@ -1,17 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Stack } from '@mui/material'
 import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd'
 import { categories } from '../utils/constants'
-import { useSearchParams, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 const Categories = () => {
   const navigate = useNavigate()
-  const [searchParams, setSearchParams] = useSearchParams()
-  const selectedCategory = searchParams.get('q')
+  const [selectedCategory, setSelectedCategory] = useState('')
+
 
   const handleSearchParams = (params, type) => {
-    const queryString = new URLSearchParams(params).toString()
-    navigate(`/${type}?${queryString}`)
+    const searchParams = new URLSearchParams(params)
+    const category = searchParams.get('category')
+    setSelectedCategory(category)
+    navigate(`/${type}?${searchParams.toString()}`)
   }
 
   return (
