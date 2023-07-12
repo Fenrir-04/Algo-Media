@@ -80,7 +80,7 @@ const Login = () => {
       <Typography component="h1" variant="h4" color={"white"}>
         Sign in
       </Typography>
-      <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+      <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }} aria-label="Login Form">
         <TextField
           margin="normal"
           required
@@ -91,9 +91,10 @@ const Login = () => {
           autoComplete="email"
           value={login.email}
           sx={{ backgroundColor: "white", borderRadius: "5px", opacity:"0.6" }}
-          onChange={handleChange}
+          onChange={handleChange} aria-label="Email Input"
+          aria-describedby="email-error"
         />
-         {error.email && error.emailError && <p className="formError">{error.emailError}</p>}
+         {error.email && error.emailError && <p className="formError" role="alert" id="email-error">{error.emailError}</p>}
         <TextField
           margin="normal"
           required
@@ -109,14 +110,16 @@ const Login = () => {
           InputProps={{
         endAdornment: (
           <InputAdornment position="end">
-            <IconButton onClick={()=>setShowPassword(!showPassword)} edge="end">
+            <IconButton onClick={()=>setShowPassword(!showPassword)} edge="end" aria-label={showPassword ? "Hide Password" : "Show Password"}>
               {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
             </IconButton>
           </InputAdornment>
         ),
       }}
+        aria-label="Password Input"
+        aria-describedby="password-error"
         />
-         {error.password && error.passwordError && <p className="formError">{error.passwordError}</p>}
+         {error.password && error.passwordError && <p className="formError" role="alert" id="password-error">{error.passwordError}</p>}
         <Typography
           variant="body1"
           sx={{
@@ -124,6 +127,8 @@ const Login = () => {
             alignItems: "center",
             justifyContent: "space-between",
           }}
+          role="navigation"
+          aria-label="Additional Options"
         >
           <span onClick={()=>Navigate('/auth/signup')} style={{cursor:"pointer"}}>
             <Link variant="body1">Sign up</Link>
@@ -143,6 +148,7 @@ const Login = () => {
             type="submit"
             variant="contained"
             sx={{ mt: 3, mb: 1, backgroundColor: "Red", width: "100px" }}
+            aria-label="Sign In Button"
           >
             Sign In
           </Button>

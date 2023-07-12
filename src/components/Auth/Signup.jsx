@@ -80,7 +80,7 @@ const Signup = () => {
       <Typography component="h1" variant="h4" color={"white"}>
         Sign Up
       </Typography>
-      <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+      <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }} aria-label="Signup Form">
         <TextField
           required
           id="email"
@@ -89,9 +89,10 @@ const Signup = () => {
           autoComplete="email"
           value={form.email}
           sx={{ backgroundColor: "white", borderRadius: "5px", opacity:"0.6", width:"450px", margin: "20px auto", display: "flex" }}
-          onChange={handleChange}
+          onChange={handleChange} aria-label="Email Input"
+          aria-describedby="email-error"
         />
-        {error.email && error.emailError && <p className="formError">{error.emailError}</p>}
+        {error.email && error.emailError && <p className="formError" role="alert" id="email-error">{error.emailError}</p>}
         <TextField
           required
           name="password"
@@ -105,14 +106,16 @@ const Signup = () => {
           InputProps={{
             endAdornment: (
             <InputAdornment position="end">
-              <IconButton onClick={()=>setShowPassword(!showPassword)} edge="end">
+              <IconButton onClick={()=>setShowPassword(!showPassword)} edge="end" aria-label={showPassword ? "Hide Password" : "Show Password"}>
                 {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
               </IconButton>
             </InputAdornment>
             ),
           }}
+          aria-label="Password Input"
+          aria-describedby="password-error"
         />
-        {error.password && error.passwordError && <p className="formError">{error.passwordError}</p>}
+        {error.password && error.passwordError && <p className="formError" role="alert" id="password-error">{error.passwordError}</p>}
 
          <TextField
           margin="normal"
@@ -129,14 +132,16 @@ const Signup = () => {
           InputProps={{
             endAdornment: (
             <InputAdornment position="end">
-              <IconButton onClick={()=>setShowConfirmPassword(!showConfirmPassword)} edge="end">
+              <IconButton onClick={()=>setShowConfirmPassword(!showConfirmPassword)} edge="end" aria-label={showConfirmPassword ? "Hide Confirm Password" : "Show Confirm Password"}>
                 {showConfirmPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
               </IconButton>
             </InputAdornment>
             ),
           }}
+          aria-label="Confirm Password Input"
+          aria-describedby="confirmPassword-error"
         />
-          {error.confirmPassword && error.confirmPasswordError && <p className="formError">{error.confirmPasswordError}</p>}
+          {error.confirmPassword && error.confirmPasswordError && <p className="formError" role="alert" id="confirmPassword-error">{error.confirmPasswordError}</p>}
           <span onClick={()=>Navigate('/auth/login')} style={{cursor:"pointer"}}>
             <Link variant="body1">Sign In</Link>
           </span>
@@ -151,6 +156,7 @@ const Signup = () => {
             type="submit"
             variant="contained"
             sx={{ mt: 3, mb: 1, backgroundColor: "Red", width: "100px" }}
+            aria-label="Sign Up Button"
           >
             Sign Up
           </Button>
