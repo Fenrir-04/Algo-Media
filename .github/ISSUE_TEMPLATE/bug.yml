@@ -23,3 +23,15 @@ body:
       description: Is there anything else we should know about this bug?
     validations:
       required: false
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Checklist
+      description: By submitting this issue, you agree to follow our Code of Conduct
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true
+        - label: I have checked the existing issues
+          required: true
+        - label: I'm a GSSoC'23 contributor
+        - label: I want to work on this issue

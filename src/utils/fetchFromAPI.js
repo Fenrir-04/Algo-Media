@@ -1,7 +1,6 @@
 import axios from "axios";
 
-export const BASE_URL = "https://www.googleapis.com/youtube/v3";
-
+const BASE_URL = "https://www.googleapis.com/youtube/v3";
 const apiKey = process.env.REACT_APP_APIKEY;
 
 const options = {
@@ -9,17 +8,13 @@ const options = {
   params: { part: "snippet", key: apiKey, maxResults: 10 },
 };
 
-export const fetchFromAPI = async (url, pageToken) => {
-  try {
-    if (pageToken) options.params.pageToken = pageToken;
-    const { data } = await axios.get(`${BASE_URL}/${url}`, options);
-    return data;
-  } catch (err) {
-    throw err;
-  }
+const fetchFromAPI = async (url, pageToken) => {
+  if (pageToken) options.params.pageToken = pageToken;
+  const { data } = await axios.get(`${BASE_URL}/${url}`, options);
+  return data;
 };
 
-export const fetchVideos = async ({ request, pageToken }) => {
+const fetchVideos = async ({ request, pageToken }) => {
   let category;
   if (request) category = new URL(request.url).searchParams.get("q") || false;
   const endPoint = `videos?regionCode=US&chart=mostPopular&${
@@ -28,7 +23,7 @@ export const fetchVideos = async ({ request, pageToken }) => {
   return fetchFromAPI(endPoint, pageToken);
 };
 
-export const fetchChannel = async ({ params }) => {
+const fetchChannel = async ({ params }) => {
   const { id } = params;
   const channelData = fetchFromAPI(`channels?part=snippet&id=${id}`);
   const videosData = fetchFromAPI(
@@ -37,12 +32,12 @@ export const fetchChannel = async ({ params }) => {
   return { channelData, videosData };
 };
 
-export const fetchSearch = async ({ searchTerm, pageToken }) => {
+const fetchSearch = async ({ searchTerm, pageToken }) => {
   const data = fetchFromAPI(`search?part=snippet&q=${searchTerm}`, pageToken);
   return data;
 };
 
-export const videoDetails = async ({ params }) => {
+const videoDetails = async ({ params }) => {
   const { id } = params;
   const videoData = fetchFromAPI(`videos?part=snippet,statistics&id=${id}`);
   const videosData = fetchFromAPI(
@@ -51,7 +46,7 @@ export const videoDetails = async ({ params }) => {
   return { videoData, videosData };
 };
 
-export const fetchSuggestionFromSearchText = async (q, signal) => {
+const fetchSuggestionFromSearchText = async (q, signal) => {
   const options = {
     method: "GET",
     params: { part: "snippet", q, key: apiKey },
@@ -61,10 +56,15 @@ export const fetchSuggestionFromSearchText = async (q, signal) => {
     signal,
   };
 
-  try {
-    const result = await axios(`${BASE_URL}/search`, options);
-    return result;
-  } catch (error) {
-    if (error.name !== "CanceledError") console.log("Error:", error);
-  }
+  const result = await axios(`${BASE_URL}/search`, options);
+  return result;
+};
+
+export {
+  fetchSuggestionFromSearchText,
+  videoDetails,
+  fetchSearch,
+  fetchChannel,
+  fetchFromAPI,
+  fetchVideos,
 };

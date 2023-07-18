@@ -1,36 +1,71 @@
 import { useState } from "react";
 import { UserAuth } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import {
   Box,
   Button,
   TextField,
   Link,
   Typography,
+  IconButton,
+  InputAdornment,
 } from "@mui/material";
+import { toast } from "react-toastify";
+import validation from "../../common/validation";
 
 const Signup = () => {
 
-  const [input,setInput] = useState('');
   const {signUp} = UserAuth();
+  const [showPassword, setShowPassword] = useState(false)
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [form, setForm] = useState({
+   email: "",
+   password: "",
+   confirmPassword: ""
+  });
+  const [error, setError] = useState({
+    email: true, password: true, confirmPassword: true
+  })
   const Navigate  = useNavigate();
 
   function handleChange(e){
-    setInput({...input,[e.target.name]: e.target.value})
+    const {name, value} = e.target;
+    setForm((prev)=>{
+      return {...prev, [name]: value}
+    })
+    let errorMessage = validation[name](value);
+    if(name === "confirmPassword") errorMessage = validation.confirmPassword(value, form.password)
+    setError((prev)=>{
+      return {...prev, ...errorMessage}
+    })
   }
 
   const handleSubmit=async(e)=>{
     e.preventDefault();
-    const {email, password} = input;
+    console.log("Submit")
+     let submitable = true;
+     Object.values(error).forEach((e)=>{
+       if(e !== false){
+        submitable = false;
+        return;
+       }
+     })
+     if(submitable){
     try{
-      const a = await signUp(email,password);
+      const a = await signUp(signUp.email,signUp.password);
       console.log(a)
       return Navigate('/');
     } catch (err){
-      alert("Invalid Credentials");
+      toast.error(err.message, { position: "top-center", autoClose: 5000, theme: "colored" });
       throw err
     }
+  }else{
+     alert("Please fill all fields with valid data.")
   }
+  }
+  
 
   return (
     <Box
@@ -45,32 +80,68 @@ const Signup = () => {
       <Typography component="h1" variant="h4" color={"white"}>
         Sign Up
       </Typography>
-      <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+      <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }} aria-label="Signup Form">
         <TextField
-          margin="normal"
           required
-          fullWidth
           id="email"
           placeholder="Email"
           name="email"
           autoComplete="email"
-          value={input.email}
-          sx={{ backgroundColor: "white", borderRadius: "5px", opacity:"0.6" }}
-          onChange={handleChange}
+          value={form.email}
+          sx={{ backgroundColor: "white", borderRadius: "5px", opacity:"0.6", width:"450px", margin: "20px auto", display: "flex" }}
+          onChange={handleChange} aria-label="Email Input"
+          aria-describedby="email-error"
         />
+        {error.email && error.emailError && <p className="formError" role="alert" id="email-error">{error.emailError}</p>}
         <TextField
+          required
+          name="password"
+          placeholder="Password"
+          type={showPassword? "text": "password"}
+          id="password"
+          autoComplete="current-password"
+          sx={{ backgroundColor: "white", borderRadius: "5px",opacity:"0.6", display:"flex" }}
+          value={form.password}
+          onChange={handleChange}
+          InputProps={{
+            endAdornment: (
+            <InputAdornment position="end">
+              <IconButton onClick={()=>setShowPassword(!showPassword)} edge="end" aria-label={showPassword ? "Hide Password" : "Show Password"}>
+                {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
+              </IconButton>
+            </InputAdornment>
+            ),
+          }}
+          aria-label="Password Input"
+          aria-describedby="password-error"
+        />
+        {error.password && error.passwordError && <p className="formError" role="alert" id="password-error">{error.passwordError}</p>}
+
+         <TextField
           margin="normal"
           required
           fullWidth
-          name="password"
-          placeholder="Password"
-          type="password"
-          id="password"
+          name="confirmPassword"
+          placeholder="Confirm Password"
+          type={showConfirmPassword? "text": "password"}
+          id="confirmPassword"
           autoComplete="current-password"
           sx={{ backgroundColor: "white", borderRadius: "5px",opacity:"0.6" }}
-          value={input.password}
+          value={form.confirmPassword}
           onChange={handleChange}
+          InputProps={{
+            endAdornment: (
+            <InputAdornment position="end">
+              <IconButton onClick={()=>setShowConfirmPassword(!showConfirmPassword)} edge="end" aria-label={showConfirmPassword ? "Hide Confirm Password" : "Show Confirm Password"}>
+                {showConfirmPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
+              </IconButton>
+            </InputAdornment>
+            ),
+          }}
+          aria-label="Confirm Password Input"
+          aria-describedby="confirmPassword-error"
         />
+          {error.confirmPassword && error.confirmPasswordError && <p className="formError" role="alert" id="confirmPassword-error">{error.confirmPasswordError}</p>}
           <span onClick={()=>Navigate('/auth/login')} style={{cursor:"pointer"}}>
             <Link variant="body1">Sign In</Link>
           </span>
@@ -85,6 +156,7 @@ const Signup = () => {
             type="submit"
             variant="contained"
             sx={{ mt: 3, mb: 1, backgroundColor: "Red", width: "100px" }}
+            aria-label="Sign Up Button"
           >
             Sign Up
           </Button>
