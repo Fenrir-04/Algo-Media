@@ -27,7 +27,7 @@ const fetchChannel = async ({ params }) => {
   const { id } = params;
   const channelData = fetchFromAPI(`channels?part=snippet&id=${id}`);
   const videosData = fetchFromAPI(
-    `search?channelId=${id}&part=snippet%2Cid&order=date`
+    `search?channelId=${id}&part=snippet%2Cid&order=date`,
   );
   return { channelData, videosData };
 };
@@ -41,7 +41,7 @@ const videoDetails = async ({ params }) => {
   const { id } = params;
   const videoData = fetchFromAPI(`videos?part=snippet,statistics&id=${id}`);
   const videosData = fetchFromAPI(
-    `search?part=snippet&relatedToVideoId=${id}&type=video`
+    `search?part=snippet&relatedToVideoId=${id}&type=video`,
   );
   return { videoData, videosData };
 };
