@@ -3,7 +3,7 @@ import Navbar from "./Navbar";
 import { Box } from "@mui/material";
 
 const Layout = () => (
-  <Box sx={{ backgroundColor: "#000" }}>
+  <Box>
     <Navbar />
     <Outlet />
   </Box>
