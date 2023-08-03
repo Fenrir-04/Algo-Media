@@ -43,11 +43,13 @@ The Algo-Media application leverages the powerful YouTube v3 API, which enables 
 To get started with Algo-Media, follow these steps:
 
 1. Clone the repository:
+
    ```
    git clone https://github.com/Fenrir-04/Algo-Media.git
    ```
 
 2. Navigate to the project directory:
+
    ```
    cd Algo-Media
    ```
@@ -61,15 +63,15 @@ To get started with Algo-Media, follow these steps:
    REACT_APP_APIKEY= your_youtube_api_key
    ```
 5. Configure Firebase: Configure your Project in [Google Firebase](https://console.firebase.google.com/). Enable Authentication through Native Providers(email/password) and Google. Add these keys in .env file:
-    ```
-    REACT_APP_FIREBASE_APIKEY = <KEY>
-    REACT_APP_FIREBASE_AUTHDOMAIN = <KEY>
-    REACT_APP_FIREBASE_PROJECTID = <KEY>
-    REACT_APP_FIREBASE_STORAGEBUCKET = <KEY>
-    REACT_APP_FIREBASE_MESSAGING_SENDER_ID = <KEY>
-    REACT_APP_FIREBASE_APPID = <KEY>
-    ```
-5. Run the application: Start the development server by running the following command:
+   ```
+   REACT_APP_FIREBASE_APIKEY = <KEY>
+   REACT_APP_FIREBASE_AUTHDOMAIN = <KEY>
+   REACT_APP_FIREBASE_PROJECTID = <KEY>
+   REACT_APP_FIREBASE_STORAGEBUCKET = <KEY>
+   REACT_APP_FIREBASE_MESSAGING_SENDER_ID = <KEY>
+   REACT_APP_FIREBASE_APPID = <KEY>
+   ```
+6. Run the application: Start the development server by running the following command:
    ```
    npm start
    ```
@@ -84,11 +86,10 @@ To get started with Algo-Media, follow these steps:
 Feel free to add more features to this project.
 
 ## 🧰 Tech Stack Used
-<img alt="React" src="https://img.shields.io/badge/react%20-%23323330.svg?&style=for-the-badge&logo=react&logoColor=%#61DBFB"/>  <img src="https://img.shields.io/badge/javascript%20-%23323330.svg?&style=for-the-badge&logo=javascript&logoColor=%23F7DF1E"/>  <img src="https://img.shields.io/badge/Redux-593D88?style=for-the-badge&logo=redux&logoColor=white"/>
 
+<img alt="React" src="https://img.shields.io/badge/react%20-%23323330.svg?&style=for-the-badge&logo=react&logoColor=%#61DBFB"/> <img src="https://img.shields.io/badge/javascript%20-%23323330.svg?&style=for-the-badge&logo=javascript&logoColor=%23F7DF1E"/> <img src="https://img.shields.io/badge/Redux-593D88?style=for-the-badge&logo=redux&logoColor=white"/>
 
-
-## 👨‍💻 Mentors and Project Admin 
+## 👨‍💻 Mentors and Project Admin
 
 The Algo-Media project is part of the Girlscript Summer of Code 2023 program. The mentors for this project are [Komal Dewnani](https://github.com/KOMALDEWNANI) and [Yashvardhan Verma](https://github.com/yashvardhan-verma). The project is administered by [Harshvardhan Singh](https://github.com/Fenrir-04). Feel free to tag them for reviewing pull requests, assigning issues or any other queries. GSSOC'23 Contributors join our [Discord](https://discord.com/channels/1099745007172329592/1109166107278983290) Channel for Collaboration and Support
 
@@ -129,7 +130,5 @@ We would like to thank the following contributors for their valuable contributio
 
 </a>
 </div>
-
-  
 
 <p align="right">(<a href="#top">Back to top</a>)</p>

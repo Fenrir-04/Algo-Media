@@ -2,8 +2,6 @@ import MusicNoteIcon from "@mui/icons-material/MusicNote";
 import OndemandVideoIcon from "@mui/icons-material/OndemandVideo";
 import SportsEsportsIcon from "@mui/icons-material/SportsEsports";
 import PsychologyIcon from '@mui/icons-material/Psychology';
-// import FitnessCenterIcon from "@mui/icons-material/FitnessCenter";
-// import OndemandVideoIcon from '@mui/icons-material/OndemandVideo';
 import CatchingPokemonIcon from '@mui/icons-material/CatchingPokemon';
 import TheaterComedyIcon from '@mui/icons-material/TheaterComedy';
 import SportsFootballIcon from '@mui/icons-material/SportsFootball';
