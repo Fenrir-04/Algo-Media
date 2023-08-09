@@ -70,16 +70,23 @@ const Signup = () => {
   return (
     <Box
       sx={{
+        width: "40%",
+        margin:"auto",
         marginTop: 8,
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        height: "100vh",
+        padding: "1rem",
+        borderRadius: "10px",
+        backgroundColor: "#242c3f",
+        boxShadow: "rgb(104 104 109 / 20%) 0px 8px 24px"
       }}
     >
       <Typography component="h1" variant="h4" color={"white"}>
         Sign Up
       </Typography>
+      <p style={{color: "red"}}><strong>Learn and Enjoy with Videos</strong></p>
+
       <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }} aria-label="Signup Form">
         <TextField
           required
@@ -88,11 +95,11 @@ const Signup = () => {
           name="email"
           autoComplete="email"
           value={form.email}
-          sx={{ backgroundColor: "white", borderRadius: "5px", opacity:"0.6", width:"450px", margin: "20px auto", display: "flex" }}
+          sx={{backgroundColor: "white", borderRadius: "5px", width:"450px", display: "flex", marginTop:"15px"}}
           onChange={handleChange} aria-label="Email Input"
           aria-describedby="email-error"
-        />
-        {error.email && error.emailError && <p className="formError" role="alert" id="email-error">{error.emailError}</p>}
+        /> 
+        {error.email && error.emailError && <p className="formError" role="alert" id="email-error" style={{marginBottom: "15px"}}>{error.emailError}</p>}
         <TextField
           required
           name="password"
@@ -100,13 +107,13 @@ const Signup = () => {
           type={showPassword? "text": "password"}
           id="password"
           autoComplete="current-password"
-          sx={{ backgroundColor: "white", borderRadius: "5px",opacity:"0.6", display:"flex" }}
+          sx={{ backgroundColor: "white", borderRadius: "5px", display:"flex", marginTop:"15px" }}
           value={form.password}
           onChange={handleChange}
           InputProps={{
             endAdornment: (
             <InputAdornment position="end">
-              <IconButton onClick={()=>setShowPassword(!showPassword)} edge="end" aria-label={showPassword ? "Hide Password" : "Show Password"}>
+              <IconButton style={{color: "black"}} onClick={()=>setShowPassword(!showPassword)} edge="end" aria-label={showPassword ? "Hide Password" : "Show Password"}>
                 {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
               </IconButton>
             </InputAdornment>
@@ -116,7 +123,7 @@ const Signup = () => {
           aria-describedby="password-error"
         />
         {error.password && error.passwordError && <p className="formError" role="alert" id="password-error">{error.passwordError}</p>}
-
+{/* e9e6e6 bgcolor input */}
          <TextField
           margin="normal"
           required
@@ -126,13 +133,13 @@ const Signup = () => {
           type={showConfirmPassword? "text": "password"}
           id="confirmPassword"
           autoComplete="current-password"
-          sx={{ backgroundColor: "white", borderRadius: "5px",opacity:"0.6" }}
+          sx={{ backgroundColor: "white", borderRadius: "5px"}}
           value={form.confirmPassword}
           onChange={handleChange}
           InputProps={{
             endAdornment: (
             <InputAdornment position="end">
-              <IconButton onClick={()=>setShowConfirmPassword(!showConfirmPassword)} edge="end" aria-label={showConfirmPassword ? "Hide Confirm Password" : "Show Confirm Password"}>
+              <IconButton style={{color: "black"}} onClick={()=>setShowConfirmPassword(!showConfirmPassword)} edge="end" aria-label={showConfirmPassword ? "Hide Confirm Password" : "Show Confirm Password"}>
                 {showConfirmPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
               </IconButton>
             </InputAdornment>

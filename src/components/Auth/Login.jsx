@@ -70,11 +70,16 @@ const Login = () => {
   return (
     <Box
       sx={{
+        width: "40%",
+        margin:"auto",
         marginTop: 8,
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        height: "100vh",
+        padding: "1rem",
+        borderRadius: "10px",
+        backgroundColor: "#242c3f",
+        boxShadow: "rgb(104 104 109 / 20%) 0px 8px 24px"
       }}
     >
       <Typography component="h1" variant="h4" color={"white"}>
@@ -90,7 +95,7 @@ const Login = () => {
           name="email"
           autoComplete="email"
           value={login.email}
-          sx={{ backgroundColor: "white", borderRadius: "5px", opacity:"0.6" }}
+          sx={{ backgroundColor: "white", borderRadius: "5px" }}
           onChange={handleChange} aria-label="Email Input"
           aria-describedby="email-error"
         />
@@ -104,7 +109,7 @@ const Login = () => {
           type={showPassword? "text":"password"}
           id="password"
           autoComplete="current-password"
-          sx={{ backgroundColor: "white", borderRadius: "5px",opacity:"0.6" }}
+          sx={{ backgroundColor: "white", borderRadius: "5px" }}
           value={login.password}
           onChange={handleChange}
           InputProps={{
